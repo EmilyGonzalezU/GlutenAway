@@ -1,0 +1,7 @@
+{
+  "name": "GlutenAway",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
