@@ -1,0 +1,51 @@
+ion-content{
+    position: relative;
+}
+#registrationContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    position: relative;
+}
+
+
+
+.nombre, .correo, .contrasena{
+    --highlight-color: #ffc300;
+    margin-bottom: 30px;
+    font-size: 18px;
+    
+}
+
+
+#backPage {
+    position: absolute;
+    top: 30px; 
+    left: 10px;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+}
+
+#backText {
+    margin-left: 5px;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+
+#registrationButton {
+    --background: #ffc300;
+    color: black;
+    padding-bottom: 30px;
+    padding-top: 20px;
+    font-weight: bold;
+}
+
+#imageContainer img{
+    width: 150px;
+    height: 100px;
+    transform: translatey(-40px);
+}

@@ -3,6 +3,9 @@
   "compileOnSave": false,
   "compilerOptions": {
     "baseUrl": "./",
+    "paths": {
+      "@srs/shared.service": ["src/app/shared.service.ts"]
+    },
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
     "strict": true,
@@ -30,4 +33,5 @@
     "strictInputAccessModifiers": true,
     "strictTemplates": true
   }
+  
 }
