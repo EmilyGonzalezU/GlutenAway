@@ -1,0 +1,59 @@
+ion-row{
+    --ion-padding-start: 0;
+    --ion-padding-end: 0;
+}
+
+.flex-col {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+
+  
+//toolbar
+.recipesToolbar{
+    --background-color: transparent;
+    --color: #fff;
+    --backdrop-filter: blur(10px);
+    --position: relative;
+}
+
+.searchRecipes{
+    --border-radius: 20px;
+    --background: #D9D9D9;
+    --padding: 0;
+    --margin: 0;
+    --border-style: solid;
+    --border-color: #000;
+    --border: 1px;
+    --box-shadow: 0;
+}
+
+.add-button{
+    --border-radius: 50%;
+    --width: 30px;
+    --height: 30px;
+    --padding: 0;
+    --margin: 0;
+    --text-align: center;
+    --line-width:20px;
+    --line-height: 20px;
+    --background:#FFC300;
+    --border-style: solid;
+    --box-shadow: 0;
+    --font-size: 20px;
+    --ionicon-stroke-width: 100px;
+    --color: #fff;
+}
+
+.recipesButton{
+    --border-radius: 20px;
+    --background: #FFFFFF;
+    --background-hover: #FFC300;
+    --background-activated: #FFC300;
+    --background-focused: #FFC300;
+    --color: #000;
+    font-size: 9px;
+    font-weight: lighter;
+}

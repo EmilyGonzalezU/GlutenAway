@@ -48,7 +48,7 @@ export class LoginPage implements OnInit {
       this.sharedService.presentToast("top", "Por favor, completa los campos correctamente");
     } else {
       this.sharedService.presentToast("top", "Bienvenid@");
-      this.router.navigate(['/home']);
+      this.router.navigate(['/maps']);
     }
   }
   

@@ -1,0 +1,71 @@
+<ion-header [translucent]="true">
+
+  <ion-toolbar class="recipesToolbar">
+    <ion-grid>
+
+      <ion-row class="ion-justify-content-center">
+        <ion-col size="1"></ion-col>
+        <ion-col size="10">
+          <ion-row class="ion-justify-content-center">
+            <ion-col size="10" class="flex-col"><ion-searchbar class="searchRecipes" animated
+                placeholder="Search..."></ion-searchbar>
+            </ion-col>
+            <ion-col size="1"></ion-col>
+            <ion-col size="1" class="flex-col">
+              <ion-button class="add-button">
+                <ion-icon class="icon" name="add-outline"></ion-icon>
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-col>
+        <ion-col size="1"></ion-col>
+      </ion-row>
+
+      <ion-toolbar>
+        <ion-segment color="warning" value="all">
+          <ion-segment-button value="forYou">
+            <ion-label>Para ti</ion-label>
+          </ion-segment-button>
+          <ion-segment-button value="favorites">
+            <ion-label>Favoritos</ion-label>
+          </ion-segment-button>
+          <ion-segment-button value="myRecipes">
+            <ion-label>Mis Recetas</ion-label>
+          </ion-segment-button>
+        </ion-segment>
+      </ion-toolbar>
+
+    </ion-grid>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card>
+    <ion-img alt="lasagne" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTRjCnEj8ga3_zb4XhCuNyXm9oke8Q2ZDSGQA&s" />
+    <ion-card-header>
+      <ion-card-title>Lasaña</ion-card-title>
+      <ion-card-subtitle>85 min.</ion-card-subtitle>
+    </ion-card-header>
+  </ion-card>
+  <ion-card>
+    <ion-img alt="empanadas" src="https://arancibiaeventos.cl/wp-content/uploads/2020/04/empanadas_de_pino.jpg" />
+    <ion-card-header>
+      <ion-card-title>Empanadas de Pino</ion-card-title>
+      <ion-card-subtitle>90 min.</ion-card-subtitle>
+    </ion-card-header>
+  </ion-card>
+  <ion-card>
+    <ion-img alt="pizza" src="https://glutendence.com/wp-content/uploads/2023/01/pizza-sin-gluten.jpg" />
+    <ion-card-header>
+      <ion-card-title>Pizza</ion-card-title>
+      <ion-card-subtitle>45 min.</ion-card-subtitle>
+    </ion-card-header>
+  </ion-card>
+  <ion-card>
+    <ion-img alt="spaghetti" src="https://s1.elespanol.com/2024/06/24/cocinillas/cocinar/865423986_244754591_1024x576.jpg" />
+    <ion-card-header>
+      <ion-card-title>Espagueti</ion-card-title>
+      <ion-card-subtitle>20 min.</ion-card-subtitle>
+    </ion-card-header>
+  </ion-card>
+</ion-content>

@@ -19,6 +19,11 @@ const routes: Routes = [
     path: 'recpassword',
     loadChildren: () => import('./pages/recpassword/recpassword.module').then( m => m.RecpasswordPageModule)
   },
+  {
+    path: 'starter-tab',
+    loadChildren: () => import('./pages/starter-tab/starter-tab.module').then( m => m.StarterTabPageModule)
+  },
+
 ];
 
 @NgModule({
