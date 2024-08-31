@@ -76,6 +76,7 @@ export class LoginPage implements OnInit {
   navRecuperation(){
     return this.router.navigate(['/recpassword']);
   }
+
 }
 
 //ionic cap run android -l --external --> para ejecutar
