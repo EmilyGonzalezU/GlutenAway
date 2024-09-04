@@ -6,4 +6,5 @@ When you clone this repository, you will need to install the Angular and Ionic C
 
 ```bash
 npm install -g @angular/cli
-npm install -g @ionic/cli
+npm install -g @ionic/cli@7
+npm install @capacitor/keyboard
