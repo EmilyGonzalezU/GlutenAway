@@ -1,0 +1,14 @@
+<ion-content [fullscreen]="true">
+  <ion-row>
+    <ion-col size="1"></ion-col>
+    <ion-col size="10">
+      <ion-button id="googleLogin" shape="round" (click)="signInGoogle()" expand="full">
+        <ion-icon name="logo-google"></ion-icon>Ingresar con Google
+      </ion-button>
+      <ion-button id="emailLogin" shape="round" (click)="signInEmail()" expand="full">
+        <ion-icon name="mail"></ion-icon>Ingresar con correo
+      </ion-button>
+    </ion-col>
+    <ion-col size="1"></ion-col>
+  </ion-row>
+</ion-content>

@@ -77,6 +77,9 @@ export class LoginPage implements OnInit {
     return this.router.navigate(['/recpassword']);
   }
 
+  navLoginOptions(){
+    return this.router.navigate(['/loginoptions']);
+  }
 }
 
 //ionic cap run android -l --external --> para ejecutar

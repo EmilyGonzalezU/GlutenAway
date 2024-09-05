@@ -1,0 +1,40 @@
+#googleLogin {
+    --background: var(--ion-button-color-google);
+    color: var(--ion-text-color);
+    border-radius: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  #emailLogin {
+    --background: var(--ion-button-color);
+    border-radius: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  ion-button ion-icon {
+    margin-right: 8px; /* Ajusta el espacio entre el icono y el texto */
+  }
+  
+  ion-row {
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    height: 100vh; /* Ocupa toda la altura de la vista */
+  }
+  
+  ion-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra los botones dentro de la columna */
+  }
+  
+  #googleLogin, #emailLogin {
+    width: 100%; /* Asegura que los botones ocupen todo el ancho de la columna */
+    max-width: 300px; /* Ajusta el ancho máximo de los botones */
+    margin-bottom: 16px; /* Espacio entre los botones */
+  }
+  
