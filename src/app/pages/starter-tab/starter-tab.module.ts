@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { StarterTabPageRoutingModule } from './starter-tab-routing.module';
 
 import { StarterTabPage } from './starter-tab.page';
+import { RecipesComponent } from 'src/app/components/recipes/recipes.component';
 
 @NgModule({
   imports: [
@@ -15,6 +16,6 @@ import { StarterTabPage } from './starter-tab.page';
     IonicModule,
     StarterTabPageRoutingModule
   ],
-  declarations: [StarterTabPage]
+  declarations: [StarterTabPage, RecipesComponent]
 })
 export class StarterTabPageModule {}

@@ -1,7 +1,11 @@
-import { NgModule } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { StarterTabPage } from './starter-tab.page';
+import { MapsComponent } from 'src/app/components/maps/maps.component';
+import { RecipesComponent } from 'src/app/components/recipes/recipes.component';
+import { ScannerComponent } from 'src/app/components/scanner/scanner.component';
+import { SettingsComponent } from 'src/app/components/settings/settings.component';
 
 const routes: Routes = [
   {
@@ -10,16 +14,20 @@ const routes: Routes = [
     children:[
       {
         path: 'recipes',
-        loadChildren: () => import('./../../pages/recipes/recipes.module').then( m => m.RecipesPageModule)
+        component : RecipesComponent
       },
       {
         path: 'scanner',
-        loadChildren: () => import('./../../pages/scanner/scanner.module').then( m => m.ScannerPageModule)
+        component : ScannerComponent
       },
       {
         path: 'maps',
-        loadChildren: () => import('./../../pages/maps/maps.module').then( m => m.MapsPageModule)
+        component: MapsComponent
       },
+      {
+        path: 'settings',
+        component: SettingsComponent
+      }
     ]
   }
 ];
