@@ -1,3 +1,26 @@
-<p>
-  scanner works!
-</p>
+<ion-content>
+    <ion-row>
+      <ion-col>
+        <ion-button expand="full" (click)="startScan()">Escanear producto.</ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="scannedCode">
+      <ion-col>
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>Resultado del Escaneo</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            {{ scannedCode }}
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="error">
+      <ion-col>
+        <ion-item color="danger">
+          <ion-label>{{ error }}</ion-label>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+</ion-content>

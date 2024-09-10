@@ -1,31 +1,29 @@
-
-  <ion-content [fullscreen]="false">
-    <div id="backPage">
-      <ion-icon name="arrow-back" id="arrowBack"></ion-icon>
-      <span id="backText" (click)="navLoginOptions()">Volver</span>
-    </div>
-    <ion-row>
-      <ion-col size="1"></ion-col>
-      <ion-col size="10">
-        <div id="fullLoginContent">
-          <div id="loginContainer">
-            <div id="imageContainer">
-              <img src="./assets/img/2.png" *ngIf="!isKeyboardOpen" alt="">
-            </div>
-            <!--Login component-->
-            <ion-input class="correo"  label="Email" type="email" fill="solid" label-placement="floating" color="dark" placeholder="Ingrese su email" [(ngModel)]="login.correo"></ion-input>
-            <ion-input class="contrasena" label="Contraseña" fill="solid" label-placement="floating" color="dark" placeholder="Ingrese su contraseña" type="password" [(ngModel)]="login.contrasena"></ion-input>
-            <ion-button shape="round" id="loginButton" (click)="loginFunction()">Ingresar</ion-button>
-            <p>
-              <span id="forgotPasswrdLink" (click)="navRecuperation()">¿Olvidaste tu contraseña?</span>
-            </p>
-            <p>
-              <span (click)="navRegistration()" id="registerLink">¿No tienes cuenta?</span>
-            </p>
+<ion-content [fullscreen]="false" scrollEvents="true">
+  <div id="backPage">
+    <ion-icon name="arrow-back" id="arrowBack"></ion-icon>
+    <span id="backText" (click)="navLoginOptions()">Volver</span>
+  </div>
+  <ion-row>
+    <ion-col size="1"></ion-col>
+    <ion-col size="10">
+      <div id="fullLoginContent">
+        <div id="loginContainer">
+          <div id="imageContainer">
+            <img src="./assets/img/2.png" *ngIf="!isKeyboardOpen" alt="">
           </div>
+          <!--Login component-->
+          <ion-input class="correo" label="Email" type="email" fill="solid" label-placement="floating" color="dark" placeholder="Ingrese su email" [(ngModel)]="login.correo"></ion-input>
+          <ion-input class="contrasena" label="Contraseña" fill="solid" label-placement="floating" color="dark" placeholder="Ingrese su contraseña" type="password" [(ngModel)]="login.contrasena"></ion-input>
+          <ion-button shape="round" id="loginButton" (click)="loginFunction()">Ingresar</ion-button>
+          <p>
+            <span id="forgotPasswrdLink" (click)="navRecuperation()">¿Olvidaste tu contraseña?</span>
+          </p>
+          <p>
+            <span (click)="navRegistration()" id="registerLink">¿No tienes cuenta?</span>
+          </p>
         </div>
-      </ion-col>
-      <ion-col size="1"></ion-col>
-    </ion-row>
-  </ion-content>
-
+      </div>
+    </ion-col>
+    <ion-col size="1"></ion-col>
+  </ion-row>
+</ion-content>
