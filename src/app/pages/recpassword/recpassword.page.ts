@@ -1,67 +1,65 @@
 import { Component, OnInit } from '@angular/core';
 import { SharedService } from '@srs/shared.service';
 import { Router } from '@angular/router';
-import { ToastController } from '@ionic/angular';
+import { ToastController, ModalController  } from '@ionic/angular';
 import { Keyboard } from '@capacitor/keyboard';
+import { AlertController } from '@ionic/angular';
+
 @Component({
   selector: 'app-recpassword',
   templateUrl: './recpassword.page.html',
   styleUrls: ['./recpassword.page.scss'],
 })
+
 export class RecpasswordPage implements OnInit {
+
   recuperation: any = {
     correo: ""
   }
+
   field: string = "";
-  constructor(private sharedService: SharedService, private router: Router, public toastController: ToastController) { }
+
+  constructor(
+    private sharedService: SharedService, 
+    private router: Router, 
+    public toastController: ToastController, 
+    private alertController: AlertController
+  ) { }
+   
   isKeyboardOpen = false;
+
   ngOnInit() {
-    // Detectar cuando el teclado se abre
     Keyboard.addListener('keyboardWillShow', () => {
       this.isKeyboardOpen = true;
     });
 
-    // Detectar cuando el teclado se cierra
     Keyboard.addListener('keyboardWillHide', () => {
       this.isKeyboardOpen = false;
     });
+  }
+  
+  async presentAlert() {
+    const alert = await this.alertController.create({
+      header: 'Recuperación de Contraseña',
+      message: 'Se ha enviado un correo electrónico con las credenciales para recuperar la contraseña.',
+      buttons: ['OK'] 
+    });
+    await alert.present(); 
   }
 
   recuperationValidation() {
     const invalidFields = [];
 
-    if (!this.validateModel(this.recuperation)) {
-      invalidFields.push(...this.field.split(","));
-    }
-
-    if (!this.sharedService.emailValid(this.recuperation.correo)) {
+    if (this.recuperation.correo.trim() == "" || !this.sharedService.emailValid(this.recuperation.correo)) {
       invalidFields.push('correo');
+      this.sharedService.errorVibration(['correo']);
     }
-
-
+  
     if (invalidFields.length > 0) {
-      this.sharedService.errorVibration(invalidFields);
       this.sharedService.presentToast("top", "Por favor, completa los campos correctamente");
     } else {
-      this.sharedService.presentToast("top", "Bienvenid@");
-      this.router.navigate(['/home']);
+      this.presentAlert();
     }
-  }
-
-  validateModel(model: any) {
-    const emptyFields = [];
-    for (const [key, value] of Object.entries(model)) {
-      if (value === "") {
-        emptyFields.push(key);
-      }
-    }
-  
-    if (emptyFields.length > 0) {
-      this.field = emptyFields.join(",");
-      return false;
-    }
-  
-    return true;
   }
 
   navLogin(){

@@ -12,15 +12,14 @@ import { Keyboard } from '@capacitor/keyboard';
 export class RegistrationPage implements OnInit {
 
   constructor(private sharedService: SharedService, private router: Router, public toastController: ToastController) { }
+  
   isKeyboardOpen = false;
   
   ngOnInit() {
-    // Detectar cuando el teclado se abre
     Keyboard.addListener('keyboardWillShow', () => {
       this.isKeyboardOpen = true;
     });
 
-    // Detectar cuando el teclado se cierra
     Keyboard.addListener('keyboardWillHide', () => {
       this.isKeyboardOpen = false;
     });
@@ -31,53 +30,35 @@ export class RegistrationPage implements OnInit {
     correo: "",
     contrasena: ""
   }
+
   field: string = "";
 
   registrationValidation() {
     const invalidFields = [];
 
-    if (!this.validateModel(this.registration)) {
-      invalidFields.push(...this.field.split(","));
-    }
-
-    if (!this.sharedService.validateName(this.registration.nombre)) {
+    if (this.registration.nombre.trim()=="" || !this.sharedService.validateName(this.registration.nombre)) {
+      this.sharedService.errorVibration(['nombre']);
       invalidFields.push('nombre');
     }
 
-    if (!this.sharedService.emailValid(this.registration.correo)) {
+    if (this.registration.correo.trim()=="" ||!this.sharedService.emailValid(this.registration.correo)) {
+      this.sharedService.errorVibration(['correo']);
       invalidFields.push('correo');
     }
 
-    if (!this.sharedService.validatePassword(this.registration.contrasena)) {
+    if (this.registration.correo.trim()=="" || !this.sharedService.validatePassword(this.registration.contrasena)) {
+      this.sharedService.errorVibration(['contrasena']);
       invalidFields.push('contrasena');
     }
 
     if (invalidFields.length > 0) {
-      this.sharedService.errorVibration(invalidFields);
       this.sharedService.presentToast("top", "Por favor, completa los campos correctamente");
     } else {
       this.sharedService.presentToast("top", "Bienvenid@");
       this.router.navigate(['/home']);
     }
   }
-
-  validateModel(model: any) {
-    const emptyFields = [];
   
-    for (const [key, value] of Object.entries(model)) {
-      if (value === "") {
-        emptyFields.push(key);
-      }
-    }
-  
-    if (emptyFields.length > 0) {
-      this.field = emptyFields.join(",");
-      return false;
-    }
-  
-    return true;
-  }
-
   navLogin(){
     return this.router.navigate(['/login']);
   }

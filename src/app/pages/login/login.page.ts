@@ -10,6 +10,7 @@ import { Keyboard } from '@capacitor/keyboard';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
+  
   login:any={
     correo:"",
     contrasena:""
@@ -17,14 +18,14 @@ export class LoginPage implements OnInit {
   field:string="";
 
   constructor(private sharedService: SharedService, private router:Router, public toastController:ToastController) { }
+  
   isKeyboardOpen = false;
+
   ngOnInit() {
-    // Detectar cuando el teclado se abre
     Keyboard.addListener('keyboardWillShow', () => {
       this.isKeyboardOpen = true;
     });
 
-    // Detectar cuando el teclado se cierra
     Keyboard.addListener('keyboardWillHide', () => {
       this.isKeyboardOpen = false;
     });
@@ -33,40 +34,22 @@ export class LoginPage implements OnInit {
   loginFunction() {
     const invalidFields = [];
   
-    // Empty fields
-    if (!this.validateModel(this.login)) {
-      invalidFields.push(...this.field.split(","));
+    if (this.login.correo.trim() == "" || !this.sharedService.emailValid(this.login.correo)) {
+      invalidFields.push('correo');
+      this.sharedService.errorVibration(['correo']);
     }
   
-    // email validation
-    if (!this.sharedService.emailValid(this.login.correo)) {
-      invalidFields.push('correo');
+    if (this.login.contrasena.trim() == "") {
+      invalidFields.push('contrasena');
+      this.sharedService.errorVibration(['contrasena']);
     }
   
     if (invalidFields.length > 0) {
-      this.sharedService.errorVibration(invalidFields);
       this.sharedService.presentToast("top", "Por favor, completa los campos correctamente");
     } else {
       this.sharedService.presentToast("top", "Bienvenid@");
       this.router.navigate(['/starter-tab']);
     }
-  }
-  
-  validateModel(model: any) {
-    const emptyFields = [];
-  
-    for (const [key, value] of Object.entries(model)) {
-      if (value === "") {
-        emptyFields.push(key);
-      }
-    }
-  
-    if (emptyFields.length > 0) {
-      this.field = emptyFields.join(",");
-      return false;
-    }
-  
-    return true;
   }
 
   navRegistration(){

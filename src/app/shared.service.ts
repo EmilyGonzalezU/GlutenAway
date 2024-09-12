@@ -15,23 +15,23 @@ export class SharedService {
   }
 
   errorVibration(fieldNames: string[]) {
-    fieldNames.forEach(fieldName => {
-      const element = document.querySelector(`.${fieldName}`);
-      if (element) {
-        const animation = createAnimation()
-          .addElement(element)
-          .duration(300)
-          .iterations(3)
-          .keyframes([
-            { offset: 0, transform: 'translateX(0px)', opacity: '1' },
-            { offset: 0.25, transform: 'translateX(-5px)', opacity: '0.8' },
-            { offset: 0.5, transform: 'translateX(5px)', opacity: '0.8' },
-            { offset: 0.75, transform: 'translateX(-5px)', opacity: '0.8' },
-            { offset: 1, transform: 'translateX(0px)', opacity: '1' },
-          ]);
-        animation.play();6
-      }
+    const elements = document.querySelectorAll(`.${fieldNames}`);
+    elements.forEach(element => {
+      const animation = createAnimation()
+        .addElement(element)
+        .duration(300)
+        .iterations(3)
+        .keyframes([
+          { offset: 0, transform: 'translateX(0px)', opacity: '1' },
+          { offset: 0.25, transform: 'translateX(-5px)', opacity: '0.8' },
+          { offset: 0.5, transform: 'translateX(5px)', opacity: '0.8' },
+          { offset: 0.75, transform: 'translateX(-5px)', opacity: '0.8' },
+          { offset: 1, transform: 'translateX(0px)', opacity: '1' },
+        ]);
+      animation.play();
+      console.log("animation")
     });
+
   }
   
   async presentToast(position: 'top' | 'middle' | 'bottom', msg: string, duration?: number) {
@@ -52,8 +52,5 @@ export class SharedService {
     return password.length >= 8;
   }
 
-  navLogin(){
-    return this.router.navigate(['/login']);
-  }
 
 }
