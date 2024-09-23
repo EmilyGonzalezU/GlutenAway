@@ -15,6 +15,7 @@ export class SharedService {
   }
 
   errorVibration(fieldNames: string[]) {
+<<<<<<< Updated upstream
     fieldNames.forEach(fieldName => {
       const element = document.querySelector(`.${fieldName}`);
       if (element) {
@@ -31,6 +32,23 @@ export class SharedService {
           ]);
         animation.play();6
       }
+=======
+    const elements = document.querySelectorAll(`.${fieldNames}`);
+    elements.forEach(element => {
+      const animation = createAnimation()
+        .addElement(element)
+        .duration(300)
+        .iterations(2)
+        .keyframes([
+          { offset: 0, transform: 'translateX(0px)', opacity: '1' },
+          { offset: 0.25, transform: 'translateX(-5px)', opacity: '0.8' },
+          { offset: 0.5, transform: 'translateX(5px)', opacity: '0.8' },
+          { offset: 0.75, transform: 'translateX(-5px)', opacity: '0.8' },
+          { offset: 1, transform: 'translateX(0px)', opacity: '1' },
+        ]);
+      animation.play();
+      console.log("animation")
+>>>>>>> Stashed changes
     });
   }
   

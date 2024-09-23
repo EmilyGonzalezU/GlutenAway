@@ -19,6 +19,7 @@ export class LoginPage implements OnInit {
   constructor(private sharedService: SharedService, private router:Router, public toastController:ToastController) { }
   isKeyboardOpen = false;
   ngOnInit() {
+<<<<<<< Updated upstream
     // Detectar cuando el teclado se abre
     Keyboard.addListener('keyboardWillShow', () => {
       this.isKeyboardOpen = true;
@@ -28,6 +29,8 @@ export class LoginPage implements OnInit {
     Keyboard.addListener('keyboardWillHide', () => {
       this.isKeyboardOpen = false;
     });
+=======
+>>>>>>> Stashed changes
   }
 
   loginFunction() {

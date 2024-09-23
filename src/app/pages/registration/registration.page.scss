@@ -1,6 +1,4 @@
-ion-content{
-    position: relative;
-}
+
 #registrationContainer {
     display: flex;
     flex-direction: column;
@@ -14,38 +12,62 @@ ion-content{
 
 .nombre, .correo, .contrasena{
     --highlight-color: #ffc300;
-    margin-bottom: 30px;
-    font-size: 18px;
-    
+}
+
+
+ion-content {
+    position: relative;
+    --background: var(--ion-color-light);
+}
+
+ion-input {
+    margin-bottom: 20px;
+    --color: var(--ion-text-color);
+    --placeholder-color: var(--ion-text-color);
+    --background: var(--ion-color-light);
 }
 
 
 #backPage {
     position: absolute;
-    top: 30px; 
+    top: 20px; 
     left: 10px;
-    z-index: 10;
     display: flex;
     align-items: center;
+    cursor: pointer; 
+    z-index: 10;
 }
 
 #backText {
-    margin-left: 5px;
+    margin-left: 8px;
     font-size: 16px;
     font-weight: 500;
+    color: var(--ion-text-color);
 }
 
+.link-text {
+    font-size: 14px;
+    font-weight: bold;
+    color: var(--ion-text-color);
+    text-align: center;
+    margin-top: 10px;
+    cursor: pointer;
+}
 
 #registrationButton {
     --background: #ffc300;
-    color: black;
-    padding-bottom: 30px;
-    padding-top: 20px;
+    width: 100%;
+    margin-top: 20px;
     font-weight: bold;
+    color: var(--ion-text-color);
+    text-transform: none;
 }
 
-#imageContainer img{
-    width: 150px;
-    height: 100px;
-    transform: translatey(-40px);
+.mail-icon {
+    background-color: #f8f3e6;
+    border-radius: 50%; 
+    padding: 20px;
+    margin-bottom: 20px;
+    color: #ffc300; 
+    font-size: 40px;
 }

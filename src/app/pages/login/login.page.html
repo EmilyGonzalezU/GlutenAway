@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 
   <ion-content [fullscreen]="false">
     <div id="backPage">
@@ -23,9 +24,71 @@
               <span (click)="navRegistration()" id="registerLink">¿No tienes cuenta?</span>
             </p>
           </div>
+=======
+<ion-content [fullscreen]="false" scrollEvents="true">
+  <div id="backPage" (click)="navLoginOptions()">
+    <ion-icon name="arrow-back" id="arrowBack"></ion-icon>
+    <span id="backText">Volver</span>
+  </div>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="1"></ion-col>
+      <ion-col size="10">
+        <div id="loginContainer">
+          <!--Login component-->
+          <ion-icon name="mail" class="mail-icon"></ion-icon>
+          <ion-input
+            class="correo"
+            label="Email"
+            type="email"
+            fill="solid"
+            label-placement="floating"
+            placeholder="Ingrese su email"
+            [(ngModel)]="login.correo"
+          ></ion-input>
+
+          <ion-input
+            class="contrasena"
+            label="Contraseña"
+            fill="solid"
+            label-placement="floating"
+            placeholder="Ingrese su contraseña"
+            type="password"
+            [(ngModel)]="login.contrasena"
+          ></ion-input>
+
+          <ion-button
+            expand="block"
+            shape="round"
+            id="loginButton"
+            (click)="loginFunction()"
+          >
+            Ingresar
+          </ion-button>
+
+          <p
+            class="link-text"
+            style="font-family: 'Inter bold', sans-serif; margin-top: 20px"
+            (click)="navRecuperation()"
+          >
+            ¿Olvidaste tu contraseña?
+          </p>
+          <p
+            class="link-text"
+            style="font-family: 'Inter bold', sans-serif"
+            (click)="navRegistration()"
+          >
+            ¿No tienes cuenta?
+          </p>
+>>>>>>> Stashed changes
         </div>
       </ion-col>
       <ion-col size="1"></ion-col>
     </ion-row>
+<<<<<<< Updated upstream
   </ion-content>
 
+=======
+  </ion-grid>
+</ion-content>
+>>>>>>> Stashed changes
