@@ -1,14 +1,96 @@
 <ion-content [fullscreen]="true">
-  <ion-row>
-    <ion-col size="1"></ion-col>
-    <ion-col size="10">
-      <ion-button id="googleLogin" shape="round" (click)="signInGoogle()" expand="full">
-        <ion-icon name="logo-google"></ion-icon>Ingresar con Google
-      </ion-button>
-      <ion-button id="emailLogin" shape="round" (click)="signInEmail()" expand="full">
-        <ion-icon name="mail"></ion-icon>Ingresar con correo
-      </ion-button>
-    </ion-col>
-    <ion-col size="1"></ion-col>
-  </ion-row>
+  <div
+    style="
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 20%;
+    "
+  >
+    <div
+      style="
+        max-width: 100vh;
+        display: flex;
+        justify-content: end;
+        transform: translateX(30%);
+      "
+    >
+      <img src="assets/img/1.png" />
+    </div>
+
+    <h3>
+      Tú bienestar,<br />
+      libre de Gluten.
+    </h3>
+
+    <div
+      style="
+        width: 100%;
+        max-width: 350px;
+        text-align: center;
+        margin-bottom: 50px;
+        margin-top: -10%;
+      "
+    >
+      <ion-button id="open-modal" expand="block"> Comenzar </ion-button>
+
+      <p style="font-size: 18px">
+        ¿No tienes una cuenta?
+        <a
+          (click)="navRegistration()"
+          style="color: var(--ion-text-color); text-decoration: none"
+        >
+          Registrate
+        </a>
+      </p>
+    </div>
+  </div>
+
+  <ion-modal
+    #modal
+    trigger="open-modal"
+    [initialBreakpoint]="0.32"
+    [breakpoints]="[0.25, 0.5, 1]"
+  >
+    <ng-template>
+      <ion-content class="ion-padding">
+        <ion-grid>
+          <ion-row>
+            <ion-col size="12" class="ion-text-center">
+              <h2>Bienvenido de nuevo</h2>
+              <p>Elige un método para iniciar sesión</p>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="12">
+              <ion-button
+                id="emailLogin"
+                shape="round"
+                (click)="signInEmail()"
+                expand="full"
+              >
+                <ion-icon name="mail" slot="start"></ion-icon>Ingresar con
+                correo
+              </ion-button>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="12">
+              <ion-button
+                id="googleLogin"
+                shape="round"
+                (click)="signInGoogle()"
+                expand="full"
+              >
+                <ion-icon name="logo-google" slot="start"></ion-icon>Ingresar
+                con Google
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
 </ion-content>

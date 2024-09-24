@@ -22,13 +22,6 @@ export class LoginPage implements OnInit {
   isKeyboardOpen = false;
 
   ngOnInit() {
-    Keyboard.addListener('keyboardWillShow', () => {
-      this.isKeyboardOpen = true;
-    });
-
-    Keyboard.addListener('keyboardWillHide', () => {
-      this.isKeyboardOpen = false;
-    });
   }
 
   loginFunction() {

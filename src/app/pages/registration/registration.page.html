@@ -9,14 +9,44 @@
       <ion-col size="10">
         <div id="fullLoginContent">
           <div id="registrationContainer">
-            <div id="imageContainer">
-              <img src="./assets/img/2.png" *ngIf="!isKeyboardOpen" alt="">
-            </div>
             <!--Login component-->
-            <ion-input class="nombre" label="Nombre" fill="solid" label-placement="floating" color="dark" placeholder="Ingrese su Nombre" [(ngModel)]="registration.nombre"></ion-input>
-            <ion-input class="correo" label="Email" type="email" fill="solid" label-placement="floating" color="dark" placeholder="Ingrese su Email" [(ngModel)]="registration.correo"></ion-input>
-            <ion-input class="contrasena" label="Contraseña" type="password" fill="solid" label-placement="floating" placeholder="Ingrese su Contraseña" [(ngModel)]="registration.contrasena"></ion-input>
-            <ion-button shape="round" expand="block" id="registrationButton" (click)="registrationValidation()">Crear cuenta</ion-button>
+            <ion-icon name="mail" class="mail-icon"></ion-icon>
+
+            <ion-input
+              class="nombre"
+              label="Nombre"
+              fill="solid"
+              label-placement="floating"
+              color="dark"
+              placeholder="Ingrese su Nombre"
+              [(ngModel)]="registration.nombre"
+            ></ion-input>
+            <ion-input
+              class="correo"
+              label="Email"
+              type="email"
+              fill="solid"
+              label-placement="floating"
+              color="dark"
+              placeholder="Ingrese su Email"
+              [(ngModel)]="registration.correo"
+            ></ion-input>
+            <ion-input
+              class="contrasena"
+              label="Contraseña"
+              type="password"
+              fill="solid"
+              label-placement="floating"
+              placeholder="Ingrese su Contraseña"
+              [(ngModel)]="registration.contrasena"
+            ></ion-input>
+            <ion-button
+              shape="round"
+              expand="block"
+              id="registrationButton"
+              (click)="registrationValidation()"
+              >Crear cuenta</ion-button
+            >
           </div>
         </div>
       </ion-col>

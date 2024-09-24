@@ -14,10 +14,6 @@ export class ScannerComponent {
   scanning: boolean = false;
   constructor(private barcodeScanner: BarcodeScanner) {}
 
-  //Metodo quelanza el scanner apenas abra la page/tab
-  ionViewDidEnter() {
-    this.startScan(); 
-  }
 
   startScan() {
     this.scanning = true;

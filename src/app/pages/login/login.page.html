@@ -1,29 +1,61 @@
 <ion-content [fullscreen]="false" scrollEvents="true">
-  <div id="backPage">
+  <div id="backPage" (click)="navLoginOptions()">
     <ion-icon name="arrow-back" id="arrowBack"></ion-icon>
-    <span id="backText" (click)="navLoginOptions()">Volver</span>
+    <span id="backText">Volver</span>
   </div>
-  <ion-row>
-    <ion-col size="1"></ion-col>
-    <ion-col size="10">
-      <div id="fullLoginContent">
+  <ion-grid>
+    <ion-row>
+      <ion-col size="1"></ion-col>
+      <ion-col size="10">
         <div id="loginContainer">
-          <div id="imageContainer">
-            <img src="./assets/img/2.png" *ngIf="!isKeyboardOpen" alt="">
-          </div>
           <!--Login component-->
-          <ion-input class="correo" label="Email" type="email" fill="solid" label-placement="floating" color="dark" placeholder="Ingrese su email" [(ngModel)]="login.correo"></ion-input>
-          <ion-input class="contrasena" label="Contraseña" fill="solid" label-placement="floating" color="dark" placeholder="Ingrese su contraseña" type="password" [(ngModel)]="login.contrasena"></ion-input>
-          <ion-button shape="round" id="loginButton" (click)="loginFunction()">Ingresar</ion-button>
-          <p>
-            <span id="forgotPasswrdLink" (click)="navRecuperation()">¿Olvidaste tu contraseña?</span>
+          <ion-icon name="mail" class="mail-icon"></ion-icon>
+          <ion-input
+            class="correo"
+            label="Email"
+            type="email"
+            fill="solid"
+            label-placement="floating"
+            placeholder="Ingrese su email"
+            [(ngModel)]="login.correo"
+          ></ion-input>
+
+          <ion-input
+            class="contrasena"
+            label="Contraseña"
+            fill="solid"
+            label-placement="floating"
+            placeholder="Ingrese su contraseña"
+            type="password"
+            [(ngModel)]="login.contrasena"
+          ></ion-input>
+
+          <ion-button
+            expand="block"
+            shape="round"
+            id="loginButton"
+            (click)="loginFunction()"
+          >
+            Ingresar
+          </ion-button>
+
+          <p
+            class="link-text"
+            style="font-family: 'Inter bold', sans-serif; margin-top: 20px"
+            (click)="navRecuperation()"
+          >
+            ¿Olvidaste tu contraseña?
           </p>
-          <p>
-            <span (click)="navRegistration()" id="registerLink">¿No tienes cuenta?</span>
+          <p
+            class="link-text"
+            style="font-family: 'Inter bold', sans-serif"
+            (click)="navRegistration()"
+          >
+            ¿No tienes cuenta?
           </p>
         </div>
-      </div>
-    </ion-col>
-    <ion-col size="1"></ion-col>
-  </ion-row>
+      </ion-col>
+      <ion-col size="1"></ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
