@@ -8,4 +8,4 @@ npm install @capacitor/keyboard
 npm install phonegap-plugin-barcodescanner
 npm install @awesome-cordova-plugins/barcode-scanner
 npm install @capacitor/geolocation
-
+npm install @capacitor/google-maps
