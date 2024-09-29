@@ -15,6 +15,7 @@ export class AuthService {
 
   user: any
 
+  //Bug Google solucionado
   async googleSignIn() {
     if (! isPlatform('capacitor')) {
       GoogleAuth.initialize()

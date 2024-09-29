@@ -40,7 +40,7 @@ export class LoginPage implements OnInit {
     if (invalidFields.length > 0) {
       this.sharedService.presentToast("top", "Por favor, completa los campos correctamente");
     } else {
-      this.sharedService.presentToast("top", "Bienvenid@");
+      this.sharedService.presentToast("top", "Bienvenid@ " + this.login.correo);
       this.router.navigate(['/starter-tab']);
     }
   }

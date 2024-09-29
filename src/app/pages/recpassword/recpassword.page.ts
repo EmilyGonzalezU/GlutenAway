@@ -42,7 +42,7 @@ export class RecpasswordPage implements OnInit {
     const alert = await this.alertController.create({
       header: 'Recuperación de Contraseña',
       message: 'Se ha enviado un correo electrónico con las credenciales para recuperar la contraseña.',
-      buttons: ['OK'] 
+      buttons: ['OK']
     });
     await alert.present(); 
   }
@@ -59,6 +59,8 @@ export class RecpasswordPage implements OnInit {
       this.sharedService.presentToast("top", "Por favor, completa los campos correctamente");
     } else {
       this.presentAlert();
+      //Resuelto error de usabilidad 
+      this.router.navigate(['/login']);
     }
   }
 

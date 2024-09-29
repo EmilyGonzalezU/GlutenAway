@@ -16,13 +16,7 @@ export class RegistrationPage implements OnInit {
   isKeyboardOpen = false;
   
   ngOnInit() {
-    Keyboard.addListener('keyboardWillShow', () => {
-      this.isKeyboardOpen = true;
-    });
-
-    Keyboard.addListener('keyboardWillHide', () => {
-      this.isKeyboardOpen = false;
-    });
+    
    }
 
   registration: any = {
@@ -46,7 +40,9 @@ export class RegistrationPage implements OnInit {
       invalidFields.push('correo');
     }
 
-    if (this.registration.correo.trim()=="" || !this.sharedService.validatePassword(this.registration.contrasena)) {
+    //Arreglo error de contraseña antes no manejaba bien la validacion porque tenia un correo.trim()
+    //Se arreglo a un contrasena.trim()
+    if (this.registration.contrasena.trim()=="" || !this.sharedService.validatePassword(this.registration.contrasena)) {
       this.sharedService.errorVibration(['contrasena']);
       invalidFields.push('contrasena');
     }
@@ -54,7 +50,7 @@ export class RegistrationPage implements OnInit {
     if (invalidFields.length > 0) {
       this.sharedService.presentToast("top", "Por favor, completa los campos correctamente");
     } else {
-      this.sharedService.presentToast("top", "Bienvenid@");
+      this.sharedService.presentToast("top", "Bienvenid@ {this.registration}");
       this.router.navigate(['/home']);
     }
   }
