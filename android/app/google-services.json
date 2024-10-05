@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "353111503726",
+    "project_id": "glutenaway-3a8ee",
+    "storage_bucket": "glutenaway-3a8ee.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:353111503726:android:1cb0c85af55e4a8148c77f",
+        "android_client_info": {
+          "package_name": "io.ionic.starter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "353111503726-i2m909hhm96fggdenpeskvu4illps328.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBl6e3mXeK9Y2NK2zjUo8HM2qygvlDSD2M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "353111503726-i2m909hhm96fggdenpeskvu4illps328.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

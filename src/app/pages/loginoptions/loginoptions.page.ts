@@ -2,6 +2,9 @@ import { Component, ViewChild, AfterViewInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { AuthService } from 'src/app/service/auth.service';
 import { IonModal } from '@ionic/angular';
+import { GoogleAuth, User } from '@codetrix-studio/capacitor-google-auth';
+import { Platform } from '@ionic/angular';
+import { isPlatform } from '@ionic/angular';
 
 @Component({
   selector: 'app-loginoptions',
@@ -12,8 +15,19 @@ export class LoginoptionsPage implements AfterViewInit {
   user: any;
   @ViewChild('modal') modal!: IonModal;
 
-  constructor(private authService: AuthService, private router: Router) { }
-
+  constructor(private platform: Platform, private authService: AuthService, private router: Router) {
+    if (!isPlatform('capacitor')) {
+      GoogleAuth.initialize();
+    }
+   }
+  
+  //Bug Google solucionado
+  async googleSignIn() {
+    
+    this.user = await GoogleAuth.signIn();
+  
+    return await this.user;
+  }
   ngAfterViewInit() {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
@@ -23,7 +37,7 @@ export class LoginoptionsPage implements AfterViewInit {
   }
 
   async signInGoogle() {
-    this.user = await this.authService.googleSignIn();
+    this.user = await this.googleSignIn();
     console.log(this.user);
     if (this.user) {
       this.router.navigate(['/starter-tab']);
