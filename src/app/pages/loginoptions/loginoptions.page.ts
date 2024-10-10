@@ -1,6 +1,5 @@
 import { Component, ViewChild, AfterViewInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
-import { AuthService } from 'src/app/service/auth.service';
 import { IonModal } from '@ionic/angular';
 import { GoogleAuth, User } from '@codetrix-studio/capacitor-google-auth';
 import { Platform } from '@ionic/angular';
@@ -15,7 +14,7 @@ export class LoginoptionsPage implements AfterViewInit {
   user: any;
   @ViewChild('modal') modal!: IonModal;
 
-  constructor(private platform: Platform, private authService: AuthService, private router: Router) {
+  constructor(private platform: Platform, private router: Router) {
     if (!isPlatform('capacitor')) {
       GoogleAuth.initialize();
     }

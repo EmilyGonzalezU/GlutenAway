@@ -2,7 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { SharedService } from '@srs/shared.service';
 import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
-import { Keyboard } from '@capacitor/keyboard';
+import { AuthService } from 'src/app/services/auth.service'; 
+import { Injectable } from '@angular/core';
+
+@Injectable({
+  providedIn: 'root' 
+})
 
 @Component({
   selector: 'app-registration',
@@ -11,13 +16,16 @@ import { Keyboard } from '@capacitor/keyboard';
 })
 export class RegistrationPage implements OnInit {
 
-  constructor(private sharedService: SharedService, private router: Router, public toastController: ToastController) { }
-  
+  constructor(
+    private sharedService: SharedService,
+    private router: Router,
+    public toastController: ToastController,
+    private authService: AuthService 
+  ) { }
+
   isKeyboardOpen = false;
-  
-  ngOnInit() {
-    
-   }
+
+  ngOnInit() {}
 
   registration: any = {
     nombre: "",
@@ -27,22 +35,20 @@ export class RegistrationPage implements OnInit {
 
   field: string = "";
 
-  registrationValidation() {
+  async registrationValidation() {
     const invalidFields = [];
 
-    if (this.registration.nombre.trim()=="" || !this.sharedService.validateName(this.registration.nombre)) {
+    if (this.registration.nombre.trim() == "" || !this.sharedService.validateName(this.registration.nombre)) {
       this.sharedService.errorVibration(['nombre']);
       invalidFields.push('nombre');
     }
 
-    if (this.registration.correo.trim()=="" ||!this.sharedService.emailValid(this.registration.correo)) {
+    if (this.registration.correo.trim() == "" || !this.sharedService.emailValid(this.registration.correo)) {
       this.sharedService.errorVibration(['correo']);
       invalidFields.push('correo');
     }
 
-    //Arreglo error de contraseña antes no manejaba bien la validacion porque tenia un correo.trim()
-    //Se arreglo a un contrasena.trim()
-    if (this.registration.contrasena.trim()=="" || !this.sharedService.validatePassword(this.registration.contrasena)) {
+    if (this.registration.contrasena.trim() == "" || !this.sharedService.validatePassword(this.registration.contrasena)) {
       this.sharedService.errorVibration(['contrasena']);
       invalidFields.push('contrasena');
     }
@@ -50,12 +56,22 @@ export class RegistrationPage implements OnInit {
     if (invalidFields.length > 0) {
       this.sharedService.presentToast("top", "Por favor, completa los campos correctamente");
     } else {
-      this.sharedService.presentToast("top", "Bienvenid@ {this.registration}");
-      this.router.navigate(['/home']);
+      try {
+        await this.authService.registerUser(
+          this.registration.correo,
+          this.registration.contrasena,
+          this.registration.nombre
+        );
+
+        this.sharedService.presentToast("top", "Bienvenid@ " + this.registration.nombre);
+        this.router.navigate(['/starter-tab']);
+      } catch (error) {
+        this.sharedService.presentToast("top", "Error al registrar.");
+      }
     }
   }
-  
-  navLogin(){
+
+  navLogin() {
     return this.router.navigate(['/login']);
   }
 }
