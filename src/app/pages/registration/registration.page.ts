@@ -21,7 +21,9 @@ export class RegistrationPage implements OnInit {
     private router: Router,
     public toastController: ToastController,
     private authService: AuthService 
-  ) { }
+  ) {
+
+   }
 
   isKeyboardOpen = false;
 
@@ -54,7 +56,7 @@ export class RegistrationPage implements OnInit {
     }
 
     if (invalidFields.length > 0) {
-      this.sharedService.presentToast("top", "Por favor, completa los campos correctamente");
+      this.sharedService.presentToast("top", "Por favor, completa los campos correctamente.");
     } else {
       try {
         await this.authService.registerUser(
@@ -62,8 +64,6 @@ export class RegistrationPage implements OnInit {
           this.registration.contrasena,
           this.registration.nombre
         );
-
-        this.sharedService.presentToast("top", "Bienvenid@ " + this.registration.nombre);
         this.router.navigate(['/starter-tab']);
       } catch (error) {
         this.sharedService.presentToast("top", "Error al registrar.");

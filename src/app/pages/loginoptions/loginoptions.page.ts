@@ -1,7 +1,7 @@
 import { Component, ViewChild, AfterViewInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { IonModal } from '@ionic/angular';
-import { GoogleAuth, User } from '@codetrix-studio/capacitor-google-auth';
+import { GoogleAuth } from '@codetrix-studio/capacitor-google-auth';
 import { Platform } from '@ionic/angular';
 import { isPlatform } from '@ionic/angular';
 
@@ -20,13 +20,17 @@ export class LoginoptionsPage implements AfterViewInit {
     }
    }
   
-  //Bug Google solucionado
+  //Bug Google 
   async googleSignIn() {
-    
     this.user = await GoogleAuth.signIn();
-  
+    //Una vez iniciado almacena el objeto que retorna en el localStorage
+    if (this.user) {
+      localStorage.setItem('googleUser', JSON.stringify(this.user)); 
+    }
+
     return await this.user;
   }
+
   ngAfterViewInit() {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
@@ -39,7 +43,7 @@ export class LoginoptionsPage implements AfterViewInit {
     this.user = await this.googleSignIn();
     console.log(this.user);
     if (this.user) {
-      this.router.navigate(['/starter-tab']);
+      console.log(this.user);
     }
   }
 

@@ -23,7 +23,7 @@ const routes: Routes = [
   {
     path: 'starter-tab',
     loadChildren: () => import('./pages/starter-tab/starter-tab.module').then( m => m.StarterTabPageModule),
-    canActivate: [AuthGuard] //Protected Route
+    canActivate: [AuthGuard] //Protected Route,
   },
   {
     path: 'loginoptions',
@@ -32,9 +32,7 @@ const routes: Routes = [
   {
     path: '',
     loadChildren: () => import('./pages/welcome/welcome.module').then( m => m.WelcomePageModule)
-  }
-
-
+  },
 
 ];
 

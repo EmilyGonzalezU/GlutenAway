@@ -8,16 +8,18 @@ import { AuthService } from 'src/app/services/auth.service';  // Asegúrate de i
 export class AuthGuard implements CanActivate {
 
   constructor(private authService: AuthService, private router: Router) {}
-
+  //Metodo que valida el router, aca valida si esta iniciado con firebase 
+  //o google, valida google mediante una variable porque esta 
+  //almacenada en el localStorage
   canActivate(): boolean {
-    //Loggin detection
-    if (this.authService.isLoggedIn()) {  
+    if (this.authService.isLoggedIn()) {
       return true;  
-    } else {
-      //Redirection to login 
-      this.router.navigate(['/login']); 
-      return false;
-    }
+    } 
+    const googleUser = localStorage.getItem('googleUser');
+    if (googleUser) {
+      return true;  
+    } 
+    return false;
   }
 
 

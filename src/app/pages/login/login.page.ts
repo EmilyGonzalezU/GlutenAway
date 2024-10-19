@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { SharedService } from '@srs/shared.service';
-import { AuthService } from 'src/app/services/auth.service'; // Asegúrate de importar tu AuthService
+import { AuthService } from 'src/app/services/auth.service'; 
 
 @Component({
   selector: 'app-login',
@@ -44,8 +44,15 @@ export class LoginPage implements OnInit {
       try {
         const user = await this.authService.loginUser(this.login.correo, this.login.contrasena);
         this.router.navigate(['/starter-tab']);
-      } catch (error) {
-        this.sharedService.presentToast("top", "El email no existe. Intente Registrarse." );
+        //any to access
+      } catch (error: any) {
+        console.log(error)
+        if (error.code === 'auth/invalid-credential') {
+          this.sharedService.presentToast("top", "EL email o  contraseña es incorrecto. Intente de nuevo.");
+        } else {
+          this.sharedService.presentToast("top", "Ocurrió un error al iniciar sesión. Intente nuevamente.");
+          console.error('Error en el login:', error);
+        }
       }
     }
   }

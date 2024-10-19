@@ -1,3 +1,20 @@
-<p>
-  settings works!
-</p>
+<!--Basic settings page-->
+<ion-content>
+  <div *ngIf="user">
+    <h2>Información de la cuenta</h2>
+    <ion-list>
+      <ion-item>
+        <ion-label>Email:</ion-label>
+        <ion-note slot="end">{{ user.email }}</ion-note>
+      </ion-item>
+      <ion-item>
+        <ion-label>Nombre:</ion-label>
+        <ion-note slot="end">{{ user.nombre }}</ion-note>
+      </ion-item>
+    </ion-list>
+  </div>
+  <div *ngIf="!user">
+    <p>No hay información de usuario disponible.</p>
+  </div>
+  <ion-button (click)="logOut()">Cerrar sesion</ion-button>
+</ion-content>
