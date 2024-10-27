@@ -14,16 +14,17 @@ import { environment } from '../environments/environment';
 import { provideAuth, getAuth } from '@angular/fire/auth';
 import { SettingsComponent } from './components/settings/settings.component';
 import { RecipesComponent } from './components/recipes/recipes.component';
-import {  HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
+import { MapsComponent } from './components/maps/maps.component';
 
 @NgModule({
   //Fire base providers
-  declarations: [AppComponent, ScannerComponent, RecipesComponent, SettingsComponent],
+  declarations: [AppComponent, ScannerComponent, RecipesComponent, SettingsComponent, MapsComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     BarcodeScanner,provideFirebaseApp(() => initializeApp(environment.firebaseConfig )),
-    provideFirestore(() => getFirestore()),provideAuth(() => getAuth()),     provideFirestore(() => getFirestore()),
+    provideFirestore(() => getFirestore()),provideAuth(() => getAuth())
   ],
   bootstrap: [AppComponent],
 })

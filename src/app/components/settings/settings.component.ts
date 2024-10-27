@@ -8,41 +8,43 @@ import { onAuthStateChanged } from 'firebase/auth';
   templateUrl: './settings.component.html',
   styleUrls: ['./settings.component.scss'],
 })
-export class SettingsComponent  implements OnInit {
-
-  
+export class SettingsComponent implements OnInit {
+  user: any = null;
 
   constructor(private authService: AuthService, private auth: Auth) {}
-  user: any = null;
 
   ngOnInit() {
     this.loadUserInfo();
   }
+
   loadUserInfo() {
     onAuthStateChanged(this.auth, async (currentUser) => {
       if (currentUser) {
         try {
-          if (currentUser.email ) {
+          if (currentUser.email) {
             this.user = await this.authService.getUserInfo(currentUser.email);
           } else {
-            console.error('El correo del usuario no ests disponible.');
+            console.error('El correo del usuario no está disponible.');
           }
         } catch (error) {
-          console.error('Error al cargar informacion del usuario:', error);
+          console.error('Error al cargar información del usuario:', error);
         }
       } else {
         const googleUser = localStorage.getItem('googleUser');
         if (googleUser) {
           const googleUserInfo = JSON.parse(googleUser);
           this.user = {
-            email: googleUserInfo.googleUser
-          }
+            nombre: googleUserInfo.nombre ,
+            email: googleUserInfo.correo
+          };
         }
       }
     });
   }
-
-  logOut(){
+  
+  logOut() {
     this.authService.logout();
+    localStorage.removeItem('googleUser'); // Limpiar localStorage
+    this.user = null; // Restablecer el objeto user
   }
 }

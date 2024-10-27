@@ -1,0 +1,28 @@
+.profile-section {
+    display: flex;
+    align-items: center;
+    padding-top: 16px;
+    padding-bottom: 16px;
+  
+    ion-avatar {
+      margin-right: 8px;
+    }
+  
+    h2 {
+      font-size: 1.2em;
+    }
+  }
+  
+  ion-item {
+    color: black;
+  
+    ion-icon {
+      color: black;
+    }
+  }
+  
+  .separator {
+    border-bottom: 1px solid #dcdcdc;
+    margin-bottom: 10px; 
+  }
+  

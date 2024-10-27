@@ -87,4 +87,23 @@ export class AuthService {
       console.log(error);
     });
   }
+
+  authen: boolean = false;
+  initializeauth() {
+    this.auth.onAuthStateChanged((user) => {
+      if (user) {
+        console.log('logueado con firebase');
+        this.router.navigate(['/starter-tab/recipes']);
+      } else {
+        const googleUser = localStorage.getItem('googleUser');
+        if (googleUser) {
+          console.log('logueado con google');
+          this.router.navigate(['/starter-tab/recipes']);
+        } else {
+          console.log('usuario no logueado');
+          this.router.navigate(['/login']);
+        }
+      }
+    });
+  }
 }

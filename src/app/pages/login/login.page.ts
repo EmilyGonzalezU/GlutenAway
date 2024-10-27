@@ -43,7 +43,7 @@ export class LoginPage implements OnInit {
     } else {
       try {
         const user = await this.authService.loginUser(this.login.correo, this.login.contrasena);
-        this.router.navigate(['/starter-tab']);
+        this.authService.initializeauth();
         //any to access
       } catch (error: any) {
         console.log(error)

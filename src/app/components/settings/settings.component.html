@@ -1,20 +1,39 @@
-<!--Basic settings page-->
 <ion-content>
-  <div *ngIf="user">
-    <h2>Información de la cuenta</h2>
-    <ion-list>
-      <ion-item>
-        <ion-label>Email:</ion-label>
-        <ion-note slot="end">{{ user.email }}</ion-note>
-      </ion-item>
-      <ion-item>
+  <ion-list lines="none" *ngIf="user">
+    <ion-item class="profile-section separator" lines="none">
+      <ion-avatar slot="start">
+        <img
+          [src]="
+            user.profileImage
+              ? user.profileImage
+              : 'assets/img/default-profile-account-unknown-icon-black-silhouette-free-vector.jpg'
+          "
+          alt="Profile Image"
+        />
+      </ion-avatar>
+      <ion-label>
+        <h2>Bienvenido(a): {{ user.nombre }}</h2>
+      </ion-label>
+    </ion-item>
+
+    <ion-item lines="none" class="separator">
+      <ion-label>
+        <h2>Cuenta</h2>
+      </ion-label>
+    </ion-item>
+
+    <ion-list inset>
+      <ion-item class="separator">
         <ion-label>Nombre:</ion-label>
-        <ion-note slot="end">{{ user.nombre }}</ion-note>
+        <ion-text>{{ user.nombre }}</ion-text>
+      </ion-item>
+      <ion-item class="separator">
+        <ion-label>Correo:</ion-label>
+        <ion-text>{{ user.email }}</ion-text>
+      </ion-item>
+      <ion-item button class="separator" (click)="logOut()">
+        <ion-label>Cerrar sesión</ion-label>
       </ion-item>
     </ion-list>
-  </div>
-  <div *ngIf="!user">
-    <p>No hay información de usuario disponible.</p>
-  </div>
-  <ion-button (click)="logOut()">Cerrar sesion</ion-button>
+  </ion-list>
 </ion-content>
