@@ -9,3 +9,4 @@ npm install phonegap-plugin-barcodescanner
 npm install @awesome-cordova-plugins/barcode-scanner
 npm install @capacitor/geolocation
 npm install @capacitor/google-maps
+npm install @codetrix-studio/capacitor-google-auth
