@@ -1,0 +1,66 @@
+<ion-content [fullscreen]="true">
+  <div id="backPage" (click)="navRecipes()">
+    <ion-icon name="arrow-back-outline"></ion-icon>
+    <span id="backText">Volver</span>
+  </div>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="1"></ion-col>
+      <ion-col size="10">
+        <div id="recipeContainer">
+          <h2 id="header">Agregar nueva receta</h2>
+          <form (ngSubmit)="submitRecipe()">
+            <!-- Nombre de la receta -->
+            <ion-input [(ngModel)]="recipe.titulo"
+                       name="titulo" 
+                       class="titulo" 
+                       label-placement="floating" 
+                       fill="solid" 
+                       placeholder="Nombre de la receta">
+            </ion-input>
+
+            <!-- Tiempo de preparación -->
+            <ion-input [(ngModel)]="recipe.tiempo" 
+                       name="tiempo" 
+                       class="tiempo" 
+                       label-placement="floating" 
+                       fill="solid" 
+                       placeholder="Tiempo de preparación">
+            </ion-input>
+
+            <!-- Ingredientes -->
+            <ion-input [(ngModel)]="recipe.ingredientes"
+                       name="ingredientes"
+                       class="ingredientes" 
+                       label-placement="floating" 
+                       fill="solid" 
+                       placeholder="Ingredientes">
+            </ion-input>
+
+            <!-- Preparación de la receta -->
+            <ion-textarea [(ngModel)]="recipe.preparacion"
+                          name="preparacion" 
+                          class="preparacion" 
+                          label-placement="floating" 
+                          fill="solid" 
+                          placeholder="Preparación">
+            </ion-textarea>
+
+            <!-- Imagen de la receta -->
+            <div class="image-upload">
+              <input type="file" accept="image/*" (change)="onImageSelected($event)" hidden id="imageInput">
+              <label for="imageInput">
+                <ion-icon name="image-outline"></ion-icon>
+              </label>
+              <img *ngIf="imagePreview" [src]="imagePreview" alt="Vista previa de la imagen" />
+            </div>
+
+            <!-- Botón Guardar Receta -->
+            <ion-button expand="full" shape="round" type="submit" id="saveButton">Guardar Receta</ion-button>
+          </form>
+        </div>
+      </ion-col>
+      <ion-col size="1"></ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

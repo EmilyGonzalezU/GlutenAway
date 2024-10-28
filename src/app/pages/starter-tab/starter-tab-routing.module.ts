@@ -5,7 +5,9 @@ import { MapsComponent } from 'src/app/components/maps/maps.component';
 import { RecipesComponent } from 'src/app/components/recipes/recipes.component';
 import { ScannerComponent } from 'src/app/components/scanner/scanner.component';
 import { SettingsComponent } from 'src/app/components/settings/settings.component';
-import { AuthGuard } from 'src/app/auth.guard';  
+import { AuthGuard } from 'src/app/auth.guard';
+import { AddNewRecipeComponent } from 'src/app/components/add-new-recipe/add-new-recipe.component';
+
 
 const routes: Routes = [
   {
@@ -13,6 +15,10 @@ const routes: Routes = [
     component: StarterTabPage,
     canActivate: [AuthGuard],
     children:[
+      {
+        path: 'add-new-recipe',
+        component: AddNewRecipeComponent
+      },
       {
         path: 'recipes',
         component : RecipesComponent,

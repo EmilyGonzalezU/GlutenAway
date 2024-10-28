@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
+import { Router } from '@angular/router';
+import { RecipeService } from 'src/app/services/recipe.service';
 
 @Component({
   selector: 'app-recipes',
@@ -8,35 +10,12 @@ import { Component, OnInit } from '@angular/core';
 export class RecipesComponent  implements OnInit {
 
   optionSelected: string = 'forYou';
+  isModalOpen = false;
+  openRecipe: any = null;
+  recipes: any[] = [];
 
-  recipes = [
-    {
-      titulo: 'Lasaña',
-      tiempo: '85 min',
-      imagen: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTRjCnEj8ga3_zb4XhCuNyXm9oke8Q2ZDSGQA&s',
-      favorite: false
-    },
-    {
-      titulo: 'Empanadas de Pino',
-      tiempo: '90 min',
-      imagen: 'https://arancibiaeventos.cl/wp-content/uploads/2020/04/empanadas_de_pino.jpg',
-      favorite: false
-    },
-    {
-      titulo: 'Pizza',
-      tiempo: '45 min',
-      imagen: 'https://glutendence.com/wp-content/uploads/2023/01/pizza-sin-gluten.jpg',
-      favorite: false
-    },
-    {
-      titulo: 'Espagueti',
-      tiempo: '20 min',
-      imagen: 'https://s1.elespanol.com/2024/06/24/cocinillas/cocinar/865423986_244754591_1024x576.jpg',
-      favorite: false
-    }
-  ];
-
-  toggleFavorite(recipe : any) {
+  toggleFavorite(event : Event,recipe : any) {
+    event.stopPropagation();
     recipe.favorite = !recipe.favorite;
   }
 
@@ -51,8 +30,33 @@ export class RecipesComponent  implements OnInit {
     this.optionSelected = option;
   }
 
-  constructor() { }
+  constructor(private router: Router, private recipeService : RecipeService) {}
 
-  ngOnInit() {}
+  addNewRecipe() {
+    this.router.navigate(['/starter-tab/add-new-recipe']);
+  }
+  
+
+  setOpen(isOpen: boolean, recipe: any = null) {
+    this.isModalOpen = isOpen;
+    this.openRecipe = recipe;
+  }
+ 
+  modalRestart(){
+    this.isModalOpen = false;
+    this.openRecipe = null;
+  }
+  
+  ngOnInit() 
+  {
+    this.recipeService.getRecetas().subscribe(
+      (data) => {
+        this.recipes = data;
+      },
+      (error) => {
+        console.error('Error fetching recipes:', error);
+      }
+    );
+  }
 
 }
