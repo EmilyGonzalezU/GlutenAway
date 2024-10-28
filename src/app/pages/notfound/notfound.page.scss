@@ -1,0 +1,29 @@
+.not-found-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 100%;
+  
+    .container {
+      max-width: 80%;
+    }
+  
+    .error-code {
+      font-size: 80px;
+      font-weight: bold;
+      color: #ffc300;
+      margin-bottom: 20px;
+    }
+  
+    .message {
+      font-size: 20px;
+      color: #333;
+      margin-bottom: 10px;
+    }
+  
+    ion-button {
+      --background: #ffc300;
+      --color: #333;
+    }
+  }

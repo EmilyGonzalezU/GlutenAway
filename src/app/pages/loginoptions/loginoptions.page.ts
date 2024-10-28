@@ -1,10 +1,9 @@
-import { Component, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, ViewChild, AfterViewInit, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { IonModal } from '@ionic/angular';
 import { GoogleAuth } from '@codetrix-studio/capacitor-google-auth';
 import { Platform } from '@ionic/angular';
 import { isPlatform } from '@ionic/angular';
-import { User } from 'src/app/class/user';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -23,24 +22,29 @@ export class LoginoptionsPage implements AfterViewInit {
   }
   
   //Bug Google 
-  async googleSignIn() {
+async googleSignIn() {
+  try {
     this.user = await GoogleAuth.signIn();
     if (this.user) {
       const userName = this.user.givenName || 'Usuario sin nombre';
       const userEmail = this.user.email;
       const userImage = this.user.imageUrl || 'ruta/a/imagen_default.jpg';
-  
+
       const googleUserData = {
         nombre: userName,
         correo: userEmail,
         imagen: userImage,
       };
-      localStorage.setItem('googleUser', JSON.stringify(googleUserData)); 
+      localStorage.setItem('googleUser', JSON.stringify(googleUserData));
       this.auth.initializeauth();
       console.log(this.user);
     }
     return this.user;
+  } catch (error) {
+    console.error('Error en Google Sign-In:', error);
   }
+}
+
   
 
   ngAfterViewInit() {
@@ -49,12 +53,15 @@ export class LoginoptionsPage implements AfterViewInit {
         this.modal?.dismiss(); 
       }
     });
-
-    
+  
   }
 
   async signInGoogle() {
-    const user: User = await this.googleSignIn();
+    this.user = await this.googleSignIn();
+    console.log(this.user);
+    if (this.user) {
+      console.log(this.user);
+    }
   }
 
   async signInEmail() {
