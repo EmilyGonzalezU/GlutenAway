@@ -1,29 +1,68 @@
+.button{
+  --background: #ffc300;
+  color: var(--ion-text-color);
+  width: 100%;
+  margin-top: 20px;
+  font-weight: bold;
+  text-transform: none;
+}
 .not-found-page {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    height: 100%;
-  
-    .container {
-      max-width: 80%;
-    }
-  
-    .error-code {
-      font-size: 80px;
-      font-weight: bold;
-      color: #ffc300;
-      margin-bottom: 20px;
-    }
-  
-    .message {
-      font-size: 20px;
-      color: #333;
-      margin-bottom: 10px;
-    }
-  
-    ion-button {
-      --background: #ffc300;
-      --color: #333;
-    }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; 
+  background-color: #f0f0f5;
+}
+
+.container {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 50%;
+  font-family: 'Inter', sans-serif;
+  font-size: 20px;
+
+}
+
+.circle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+  height: 200px;
+  background-color: #ffc300;
+  border-radius: 50%;
+  margin-bottom: 20px;
+  animation: bounce 1.5s ease-in-out infinite; 
+
+.error-code {
+  font-size: 80px;
+  font-weight: bold;
+  color: #fff;
+}
+
+.message {
+  font-size: 22px;
+  color: #333;
+  margin: 10px 0;
+}
+
+.sub-message {
+  font-size: 18px;
+  --color: var(--ion-text-color);
+  margin-bottom: 25px;
+}
+
+
+
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
   }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+}

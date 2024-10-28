@@ -12,14 +12,14 @@ export class AuthGuard implements CanActivate {
   //o google, valida google mediante una variable porque esta 
   //almacenada en el localStorage
   canActivate(): boolean {
-    if (this.authService.isLoggedIn()) {
-      return true;  
-    } 
-    const googleUser = localStorage.getItem('googleUser');
-    if (googleUser) {
-      return true;  
-    } 
-    return false;
+    if( this.authService.isLoggedIn()){
+      return true;
+    }else{
+      this.router.navigate(['/login']);
+      return false;
+    }
+    
+    ;
   }
 
 

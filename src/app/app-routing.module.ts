@@ -22,7 +22,8 @@ const routes: Routes = [
   },
   {
     path: 'starter-tab',
-    loadChildren: () => import('./pages/starter-tab/starter-tab.module').then(m => m.StarterTabPageModule)
+    loadChildren: () => import('./pages/starter-tab/starter-tab.module').then(m => m.StarterTabPageModule),
+    canActivate: [AuthGuard],
   },
   {
     path: 'loginoptions',

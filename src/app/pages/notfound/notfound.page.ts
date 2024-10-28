@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-notfound',
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NotfoundPage implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router, private auth: AuthService) { }
 
   ngOnInit() {
+  }
+
+  nav(){
+    if(this.auth.isLoggedIn !==null){
+      this.router.navigate(['/starter-tab']);
+    }else{
+      this.router.navigate(['/login']);
+    }
   }
 
 }

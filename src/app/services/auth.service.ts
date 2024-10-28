@@ -64,7 +64,7 @@ export class AuthService {
   }
 
   isLoggedIn(): boolean {
-    const user = this.auth.currentUser;
+    const user = this.initializeauth();
     return user !== null;  
   }
 

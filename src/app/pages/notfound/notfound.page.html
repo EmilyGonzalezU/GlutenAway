@@ -1,8 +1,12 @@
 <ion-content class="ion-padding not-found-page">
   <div class="container">
-    <h1 class="error-code">404</h1>
+    <div class="circle">
+      <h1 class="error-code">404</h1>
+    </div>
     <p class="message">¡Ups! No encontramos esta página.</p>
-    <p>Tal vez se perdió en un mundo sin gluten...</p>
-    <ion-button color="warning"> Volver al inicio </ion-button>
+    <p class="sub-message">
+      Parece que te has perdido en un mundo sin gluten...
+    </p>
+    <ion-button class="button" (click)="nav()">Volver al inicio</ion-button>
   </div>
 </ion-content>

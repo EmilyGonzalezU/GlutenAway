@@ -27,7 +27,7 @@ export class SettingsComponent implements OnInit {
             console.error('El correo del usuario no está disponible.');
           }
         } catch (error) {
-          console.error('Error al cargar información del usuario:', error);
+          console.error('Error al cargar información del usuario');
         }
       } else {
         const googleUser = localStorage.getItem('googleUser');
@@ -35,7 +35,8 @@ export class SettingsComponent implements OnInit {
           const googleUserInfo = JSON.parse(googleUser);
           this.user = {
             nombre: googleUserInfo.nombre ,
-            email: googleUserInfo.correo
+            email: googleUserInfo.correo,
+            imagen: googleUserInfo.imagen
           };
         }
       }

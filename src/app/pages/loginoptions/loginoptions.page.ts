@@ -26,9 +26,9 @@ async googleSignIn() {
   try {
     this.user = await GoogleAuth.signIn();
     if (this.user) {
-      const userName = this.user.givenName || 'Usuario sin nombre';
+      const userName = this.user.name;
       const userEmail = this.user.email;
-      const userImage = this.user.imageUrl || 'ruta/a/imagen_default.jpg';
+      const userImage = this.user.imageUrl;
 
       const googleUserData = {
         nombre: userName,
@@ -38,6 +38,7 @@ async googleSignIn() {
       localStorage.setItem('googleUser', JSON.stringify(googleUserData));
       this.auth.initializeauth();
       console.log(this.user);
+      console.log(this.user.imagen);
     }
     return this.user;
   } catch (error) {
@@ -53,15 +54,10 @@ async googleSignIn() {
         this.modal?.dismiss(); 
       }
     });
-  
   }
 
   async signInGoogle() {
     this.user = await this.googleSignIn();
-    console.log(this.user);
-    if (this.user) {
-      console.log(this.user);
-    }
   }
 
   async signInEmail() {

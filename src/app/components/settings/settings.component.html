@@ -4,9 +4,8 @@
       <ion-avatar slot="start">
         <img
           [src]="
-            user.profileImage
-              ? user.profileImage
-              : 'assets/img/default-profile-account-unknown-icon-black-silhouette-free-vector.jpg'
+            user.imagen ||
+            'assets/img/default-profile-account-unknown-icon-black-silhouette-free-vector.jpg'
           "
           alt="Profile Image"
         />
