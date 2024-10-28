@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { StarterTabPageRoutingModule } from './starter-tab-routing.module';
 
 import { StarterTabPage } from './starter-tab.page';
+import { AddNewRecipeComponent } from 'src/app/components/add-new-recipe/add-new-recipe.component';
 
 @NgModule({
   imports: [
@@ -16,6 +17,6 @@ import { StarterTabPage } from './starter-tab.page';
     StarterTabPageRoutingModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  declarations: [StarterTabPage]
+  declarations: [StarterTabPage, AddNewRecipeComponent]
 })
 export class StarterTabPageModule {}
