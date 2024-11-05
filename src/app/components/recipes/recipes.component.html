@@ -1,16 +1,24 @@
 <ion-header [translucent]="true">
-
   <ion-toolbar class="recipesToolbar">
     <ion-row class="ion-justify-content-center">
       <ion-col size="1"></ion-col>
       <ion-col size="10">
-        <ion-searchbar class="searchRecipes" animated placeholder="Search..."></ion-searchbar>
+        <ion-searchbar
+          class="searchRecipes"
+          animated
+          placeholder="Search..."
+        ></ion-searchbar>
       </ion-col>
       <ion-col size="1"></ion-col>
     </ion-row>
 
     <ion-toolbar>
-      <ion-segment color="warning" value="all" [(ngModel)]="optionSelected">
+      <ion-segment
+        color="warning"
+        value="all"
+        [(ngModel)]="optionSelected"
+        (ionChange)="changeOption(optionSelected)"
+      >
         <ion-segment-button value="forYou">
           <ion-label>Para ti</ion-label>
         </ion-segment-button>
@@ -26,18 +34,22 @@
 </ion-header>
 
 <ion-content [fullscreen]="true" bounce="true">
-  <ion-card  *ngFor="let receta of recipes" (click)="setOpen(true, receta)">
-    <ion-img [src]="receta.imagen" alt="{{ receta.nombre }}"></ion-img>    
+  <ion-card *ngFor="let receta of recipes" (click)="setOpen(true, receta)">
+    <ion-img [src]="receta.imagen" alt="{{ receta.nombre }}"></ion-img>
     <ion-row>
       <ion-col size="11">
         <ion-card-header>
-          <ion-card-title>{{receta.nombre}}</ion-card-title>
-          <ion-card-subtitle>{{receta.duracion}}</ion-card-subtitle>
+          <ion-card-title>{{ receta.nombre }}</ion-card-title>
+          <ion-card-subtitle>{{ receta.duracion }}</ion-card-subtitle>
         </ion-card-header>
       </ion-col>
       <ion-col size="1">
-        <ion-button fill="clear" class="star-button" (click)="toggleFavorite($event, receta)">
-          <ion-icon name="star-outline"></ion-icon>        
+        <ion-button
+          fill="clear"
+          class="star-button"
+          (click)="toggleFavorite($event, receta)"
+        >
+          <ion-icon [name]="receta.fav ? 'star' : 'star-outline'"></ion-icon>
         </ion-button>
       </ion-col>
     </ion-row>
@@ -62,24 +74,36 @@
         <ion-toolbar>
           <ion-title></ion-title>
           <ion-buttons slot="end">
-            <ion-button (click)="setOpen(false)"><ion-icon name="close-outline"></ion-icon></ion-button>
+            <ion-button (click)="setOpen(false)"
+              ><ion-icon name="close-outline"></ion-icon
+            ></ion-button>
           </ion-buttons>
         </ion-toolbar>
       </ion-header>
       <ion-content class="ion-padding">
         <ion-row>
           <ion-col size="1"></ion-col>
-            <img class="imgModal" [alt]="openRecipe?.imagen" [src]="openRecipe?.imagen">
-            <ion-col size="10">
-            <p><strong><h2>{{openRecipe?.nombre}}</h2></strong></p>
-            <p><strong>Tiempo de preparación: </strong> {{openRecipe?.duracion}}</p>
-            <p><strong>Ingredientes: </strong>{{openRecipe?.ingredientes}}</p>
-            <p><strong>Preparación: </strong>{{openRecipe?.preparacion}}</p>
+          <img
+            class="imgModal"
+            [alt]="openRecipe?.imagen"
+            [src]="openRecipe?.imagen"
+          />
+          <ion-col size="10">
+            <p>
+              <strong
+                ><h2>{{ openRecipe?.nombre }}</h2></strong
+              >
+            </p>
+            <p>
+              <strong>Tiempo de preparación: </strong>
+              {{ openRecipe?.duracion }}
+            </p>
+            <p><strong>Ingredientes: </strong>{{ openRecipe?.ingredientes }}</p>
+            <p><strong>Preparación: </strong>{{ openRecipe?.preparacion }}</p>
           </ion-col>
           <ion-col size="1"></ion-col>
         </ion-row>
       </ion-content>
     </ng-template>
   </ion-modal>
-
 </ion-content>

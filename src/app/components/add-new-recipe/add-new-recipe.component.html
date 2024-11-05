@@ -11,52 +11,66 @@
           <h2 id="header">Agregar nueva receta</h2>
           <form (ngSubmit)="submitRecipe()">
             <!-- Nombre de la receta -->
-            <ion-input [(ngModel)]="recipe.titulo"
-                       name="titulo" 
-                       class="titulo" 
-                       label-placement="floating" 
-                       fill="solid" 
-                       placeholder="Nombre de la receta">
+            <ion-input
+              [(ngModel)]="recipe.titulo"
+              name="titulo"
+              class="titulo"
+              label-placement="floating"
+              fill="solid"
+              placeholder="Nombre de la receta"
+            >
             </ion-input>
 
             <!-- Tiempo de preparación -->
-            <ion-input [(ngModel)]="recipe.tiempo" 
-                       name="tiempo" 
-                       class="tiempo" 
-                       label-placement="floating" 
-                       fill="solid" 
-                       placeholder="Tiempo de preparación">
+            <ion-input
+              [(ngModel)]="recipe.tiempo"
+              name="tiempo"
+              class="tiempo"
+              label-placement="floating"
+              fill="solid"
+              placeholder="Tiempo de preparación"
+            >
             </ion-input>
 
             <!-- Ingredientes -->
-            <ion-input [(ngModel)]="recipe.ingredientes"
-                       name="ingredientes"
-                       class="ingredientes" 
-                       label-placement="floating" 
-                       fill="solid" 
-                       placeholder="Ingredientes">
+            <ion-input
+              [(ngModel)]="recipe.ingredientes"
+              name="ingredientes"
+              class="ingredientes"
+              label-placement="floating"
+              fill="solid"
+              placeholder="Ingredientes"
+            >
             </ion-input>
 
             <!-- Preparación de la receta -->
-            <ion-textarea [(ngModel)]="recipe.preparacion"
-                          name="preparacion" 
-                          class="preparacion" 
-                          label-placement="floating" 
-                          fill="solid" 
-                          placeholder="Preparación">
+            <ion-textarea
+              [(ngModel)]="recipe.preparacion"
+              name="preparacion"
+              class="preparacion"
+              label-placement="floating"
+              fill="solid"
+              placeholder="Preparación"
+            >
             </ion-textarea>
 
             <!-- Imagen de la receta -->
-            <div class="image-upload">
+            <!--<div class="image-upload">
               <input type="file" accept="image/*" (change)="onImageSelected($event)" hidden id="imageInput">
               <label for="imageInput">
                 <ion-icon name="image-outline"></ion-icon>
               </label>
               <img *ngIf="imagePreview" [src]="imagePreview" alt="Vista previa de la imagen" />
-            </div>
+            </div> -->
 
             <!-- Botón Guardar Receta -->
-            <ion-button expand="full" shape="round" type="submit" id="saveButton">Guardar Receta</ion-button>
+            <ion-button
+              expand="full"
+              shape="round"
+              type="submit"
+              id="saveButton"
+              >Guardar Receta</ion-button
+            >
           </form>
         </div>
       </ion-col>

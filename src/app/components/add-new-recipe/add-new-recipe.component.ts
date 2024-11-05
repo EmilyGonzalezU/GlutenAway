@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { Router } from '@angular/router';
-
+import { AuthService } from 'src/app/services/auth.service';
 @Component({
   selector: 'app-add-recipe',
   templateUrl: './add-new-recipe.component.html',
@@ -11,19 +11,25 @@ export class AddNewRecipeComponent {
 
   recipe = {
     titulo: '',
-    tiempo: '',
+    tiempo: 0,
     ingredientes: '',
     preparacion: '',
-    imagen: ''
   };
 
   imagePreview: string | ArrayBuffer | null = null;
 
-  constructor(private modalCtrl: ModalController, private router: Router) {}
+  constructor(private auth: AuthService, private modalCtrl: ModalController, private router: Router) {}
 
   submitRecipe() {
-    if (this.recipe.titulo && this.recipe.tiempo) {
-      this.modalCtrl.dismiss(this.recipe);
+    const email = this.auth.getCurrentUserEmail();
+    if (email && this.recipe.titulo && this.recipe.tiempo) {
+      this.auth.addRecipe(email, this.recipe.tiempo, this.recipe.titulo, this.recipe.ingredientes, this.recipe.preparacion)
+        .then(() => {
+          this.modalCtrl.dismiss(this.recipe);
+        })
+        .catch(error => console.error("Error al agregar la receta:", error));
+    } else {
+      console.log('Usuario no autenticado');
     }
   }
 
@@ -31,7 +37,9 @@ export class AddNewRecipeComponent {
     this.modalCtrl.dismiss();
   }
 
-  onImageSelected(event: Event) {
+  /**
+   * 
+   * @returns onImageSelected(event: Event) {
     const fileInput = (event.target as HTMLInputElement);
     if (fileInput.files && fileInput.files.length > 0) {
       const file = fileInput.files[0];
@@ -45,6 +53,7 @@ export class AddNewRecipeComponent {
       reader.readAsDataURL(file);
     }
   }
+   */
 
 
   navRecipes(){

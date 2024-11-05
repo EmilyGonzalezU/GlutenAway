@@ -15,6 +15,7 @@ export class LoginPage implements OnInit {
     correo: "",
     contrasena: ""
   };
+  isLoading = false;
 
   constructor(
     private sharedService: SharedService,
@@ -23,7 +24,9 @@ export class LoginPage implements OnInit {
     private authService: AuthService 
   ) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.isLoading = this.authService.isLoading;
+   }
 
   async loginFunction() {
     const invalidFields = [];
@@ -41,6 +44,7 @@ export class LoginPage implements OnInit {
     if (invalidFields.length > 0) {
       this.sharedService.presentToast("top", "Por favor, completa los campos correctamente");
     } else {
+      this.isLoading = true;
       try {
         const user = await this.authService.loginUser(this.login.correo, this.login.contrasena);
         this.authService.initializeauth();
@@ -53,6 +57,8 @@ export class LoginPage implements OnInit {
           this.sharedService.presentToast("top", "Ocurrió un error al iniciar sesión. Intente nuevamente.");
           console.error('Error en el login:', error);
         }
+      } finally{
+        this.isLoading = false;
       }
     }
   }

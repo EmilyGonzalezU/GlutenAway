@@ -65,3 +65,33 @@ ion-input {
     color: #ffc300; 
     font-size: 40px;
 }
+
+.loading-overlay {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 150px;
+    height: 150px;
+    border-radius: 20px; 
+    background: white;
+    color: white;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+  }
+  
+  .loading-overlay ion-spinner {
+    margin-bottom: 10px;
+    color: #ffc300;
+  }
+
+  .loading-overlay p {
+    font-size: 16px;
+    color: black; 
+    margin: 0;
+  }
+  
+  

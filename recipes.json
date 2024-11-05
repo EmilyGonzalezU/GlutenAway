@@ -1,0 +1,361 @@
+[
+    {
+      "id": 1,
+      "nombre": "Smoothie Verde",
+      "duracion": "5 minutos",
+      "fav": false,
+      "imagen": "https://tortillasnagual.com/wp-content/uploads/2022/04/Conservar-las-tortillas-de-maiz.jpeg",
+      "ingredientes": [
+        "1 plátano",
+        "1 taza de espinacas",
+        "1 taza de leche de almendras",
+        "1 cucharada de mantequilla de almendra"
+      ],
+      "preparacion": [
+        "Coloca todos los ingredientes en una licuadora.",
+        "Licúa hasta obtener una mezcla suave.",
+        "Sirve inmediatamente."
+      ]
+    },
+    {
+      "id": 2,
+      "nombre": "Ensalada de Quinoa",
+      "duracion": "15 minutos",
+      "fav": false,
+      "imagen": "https://tortillasnagual.com/wp-content/uploads/2022/04/Conservar-las-tortillas-de-maiz.jpeg",
+      "ingredientes": [
+        "1 taza de quinoa cocida",
+        "1 pepino picado",
+        "1 tomate picado",
+        "1/4 taza de perejil picado",
+        "Jugo de 1 limón"
+      ],
+      "preparacion": [
+        "Mezcla todos los ingredientes en un tazón.",
+        "Añade el jugo de limón y mezcla bien.",
+        "Sirve fría."
+      ]
+    },
+    {
+      "id": 3,
+      "nombre": "Tortilla de Patatas",
+      "duracion": "30 minutos",
+      "fav": false,
+      "imagen": "https://tortillasnagual.com/wp-content/uploads/2022/04/Conservar-las-tortillas-de-maiz.jpeg",
+      "ingredientes": [
+        "4 patatas",
+        "4 huevos",
+        "1 cebolla",
+        "Sal y pimienta al gusto"
+      ],
+      "preparacion": [
+        "Corta las patatas y la cebolla en rodajas finas.",
+        "Fríe en una sartén hasta que estén doradas.",
+        "Bate los huevos y mezcla con las patatas.",
+        "Cocina en la sartén a fuego lento hasta que cuaje."
+      ]
+    },
+    {
+      "id": 4,
+      "nombre": "Pasta de Garbanzos",
+      "duracion": "10 minutos",
+      "fav": false,
+      "imagen": "https://tortillasnagual.com/wp-content/uploads/2022/04/Conservar-las-tortillas-de-maiz.jpeg",
+      "ingredientes": [
+        "200g de pasta de garbanzos",
+        "1 taza de tomate cherry",
+        "1 diente de ajo",
+        "Albahaca al gusto"
+      ],
+      "preparacion": [
+        "Cocina la pasta según las instrucciones.",
+        "Saltea el ajo y los tomates en una sartén.",
+        "Mezcla la pasta con los tomates y añade albahaca."
+      ]
+    },
+    {
+      "id": 5,
+      "nombre": "Galletas de Almendra",
+      "duracion": "20 minutos",
+      "fav": false,
+      "imagen": "https://tortillasnagual.com/wp-content/uploads/2022/04/Conservar-las-tortillas-de-maiz.jpeg",
+      "ingredientes": [
+        "2 tazas de harina de almendra",
+        "1/4 taza de miel",
+        "1 huevo",
+        "1 cucharadita de extracto de vainilla"
+      ],
+      "preparacion": [
+        "Mezcla todos los ingredientes en un tazón.",
+        "Forma bolitas y colócalas en una bandeja para hornear.",
+        "Hornea a 180°C durante 15 minutos."
+      ]
+    },
+    {
+      "id": 6,
+      "nombre": "Sopa de Verduras",
+      "duracion": "30 minutos",
+      "fav": false,
+      "imagen": "https://tortillasnagual.com/wp-content/uploads/2022/04/Conservar-las-tortillas-de-maiz.jpeg",
+      "ingredientes": [
+        "1 zanahoria",
+        "1 calabacín",
+        "1 papa",
+        "1 litro de caldo de verduras"
+      ],
+      "preparacion": [
+        "Corta las verduras en cubos.",
+        "Hierve las verduras en el caldo durante 20 minutos.",
+        "Sirve caliente."
+      ]
+    },
+    {
+      "id": 7,
+      "nombre": "Brownies de Frijoles Negros",
+      "duracion": "30 minutos",
+      "fav": false,
+      "imagen": "https://tortillasnagual.com/wp-content/uploads/2022/04/Conservar-las-tortillas-de-maiz.jpeg",
+      "ingredientes": [
+        "1 lata de frijoles negros",
+        "1/2 taza de cacao en polvo",
+        "1/4 taza de miel",
+        "2 huevos"
+      ],
+      "preparacion": [
+        "Precalienta el horno a 180°C.",
+        "Mezcla todos los ingredientes en un procesador.",
+        "Vierte en un molde y hornea durante 25 minutos."
+      ]
+    },
+    {
+      "id": 8,
+      "nombre": "Pancakes de Avena",
+      "duracion": "15 minutos",
+      "fav": false,
+      "imagen": "https://tortillasnagual.com/wp-content/uploads/2022/04/Conservar-las-tortillas-de-maiz.jpeg",
+      "ingredientes": [
+        "1 taza de avena",
+        "1 plátano",
+        "1/2 taza de leche de almendras",
+        "1 cucharadita de polvo de hornear"
+      ],
+      "preparacion": [
+        "Mezcla todos los ingredientes hasta obtener una masa.",
+        "Cocina en una sartén caliente por ambos lados.",
+        "Sirve con miel o fruta."
+      ]
+    },
+    {
+      "id": 9,
+      "nombre": "Helado de Plátano",
+      "duracion": "5 minutos",
+      "fav": false,
+      "imagen": "https://tortillasnagual.com/wp-content/uploads/2022/04/Conservar-las-tortillas-de-maiz.jpeg",
+      "ingredientes": [
+        "2 plátanos",
+        "1 cucharada de mantequilla de almendra"
+      ],
+      "preparacion": [
+        "Congela los plátanos y tritúralos.",
+        "Añade la mantequilla de almendra y mezcla.",
+        "Sirve inmediatamente."
+      ]
+    },
+    {
+      "id": 10,
+      "nombre": "Bowl de Frutas",
+      "duracion": "10 minutos",
+      "fav": false,
+      "imagen": "https://tortillasnagual.com/wp-content/uploads/2022/04/Conservar-las-tortillas-de-maiz.jpeg",
+      "ingredientes": [
+        "1 taza de fresas",
+        "1 taza de arándanos",
+        "1 plátano",
+        "Yogur al gusto"
+      ],
+      "preparacion": [
+        "Corta las frutas en trozos.",
+        "Mezcla las frutas con el yogur.",
+        "Sirve en un bowl."
+      ]
+    },
+    {
+      "id": 11,
+      "nombre": "Pescado al Horno",
+      "duracion": "25 minutos",
+      "fav": false,
+      "imagen": "https://tortillasnagual.com/wp-content/uploads/2022/04/Conservar-las-tortillas-de-maiz.jpeg",
+      "ingredientes": [
+        "2 filetes de pescado",
+        "Jugo de 1 limón",
+        "Sal y pimienta al gusto"
+      ],
+      "preparacion": [
+        "Precalienta el horno a 200°C.",
+        "Coloca el pescado en una bandeja y sazona.",
+        "Hornea durante 20 minutos."
+      ]
+    },
+    {
+      "id": 12,
+      "nombre": "Barras de Granola",
+      "duracion": "15 minutos",
+      "fav": false,
+      "imagen": "https://tortillasnagual.com/wp-content/uploads/2022/04/Conservar-las-tortillas-de-maiz.jpeg",
+      "ingredientes": [
+        "2 tazas de avena",
+        "1/2 taza de miel",
+        "1/2 taza de nueces picadas"
+      ],
+      "preparacion": [
+        "Mezcla todos los ingredientes y presiona en un molde.",
+        "Deja enfriar y corta en barras.",
+        "Sirve como snack."
+      ]
+    },
+    {
+      "id": 13,
+      "nombre": "Pizza de Coliflor",
+      "duracion": "30 minutos",
+      "fav": false,
+      "imagen": "https://tortillasnagual.com/wp-content/uploads/2022/04/Conservar-las-tortillas-de-maiz.jpeg",
+      "ingredientes": [
+        "1 coliflor",
+        "1 taza de queso",
+        "1 huevo",
+        "Salsa de tomate al gusto"
+      ],
+      "preparacion": [
+        "Precalienta el horno a 200°C.",
+        "Ralla la coliflor y mezcla con el queso y el huevo.",
+        "Forma una base y hornea durante 15 minutos.",
+        "Añade salsa y toppings y hornea 10 minutos más."
+      ]
+    },
+    {
+      "id": 14,
+      "nombre": "Guacamole",
+      "duracion": "10 minutos",
+      "fav": false,
+      "imagen": "https://tortillasnagual.com/wp-content/uploads/2022/04/Conservar-las-tortillas-de-maiz.jpeg",
+      "ingredientes": [
+        "2 aguacates",
+        "1/2 cebolla picada",
+        "Jugo de 1 limón",
+        "Sal al gusto"
+      ],
+      "preparacion": [
+        "Aplasta los aguacates en un tazón.",
+        "Añade la cebolla, el jugo de limón y la sal.",
+        "Sirve con totopos."
+      ]
+    },
+    {
+      "id": 15,
+      "nombre": "Tacos de Lechuga",
+      "duracion": "10 minutos",
+      "fav": false,
+      "imagen": "https://tortillasnagual.com/wp-content/uploads/2022/04/Conservar-las-tortillas-de-maiz.jpeg",
+      "ingredientes": [
+        "Hojas de lechuga",
+        "Carne molida",
+        "Tomate picado",
+        "Aguacate"
+      ],
+      "preparacion": [
+        "Cocina la carne molida.",
+        "Sirve en hojas de lechuga con tomate y aguacate."
+      ]
+    },
+    {
+      "id": 16,
+      "nombre": "Sushi de Pepino",
+      "duracion": "15 minutos",
+      "fav": false,
+      "imagen": "https://tortillasnagual.com/wp-content/uploads/2022/04/Conservar-las-tortillas-de-maiz.jpeg",
+      "ingredientes": [
+        "1 pepino",
+        "1/2 taza de arroz",
+        "Aguacate",
+        "Salmón"
+      ],
+      "preparacion": [
+        "Corta el pepino en tiras.",
+        "Rellena con arroz, aguacate y salmón.",
+        "Enrolla y sirve."
+      ]
+    },
+    {
+      "id": 17,
+      "nombre": "Bol de Tofu",
+      "duracion": "20 minutos",
+      "fav": false,
+      "imagen": "https://tortillasnagual.com/wp-content/uploads/2022/04/Conservar-las-tortillas-de-maiz.jpeg",
+      "ingredientes": [
+        "200g de tofu",
+        "1 taza de brócoli",
+        "1/2 taza de zanahorias",
+        "Salsa de soya"
+      ],
+      "preparacion": [
+        "Cocina el tofu y las verduras en una sartén.",
+        "Añade salsa de soya al gusto.",
+        "Sirve caliente."
+      ]
+    },
+    {
+      "id": 18,
+      "nombre": "Muffins de Zanahoria",
+      "duracion": "25 minutos",
+      "fav": false,
+      "imagen": "https://tortillasnagual.com/wp-content/uploads/2022/04/Conservar-las-tortillas-de-maiz.jpeg",
+      "ingredientes": [
+        "1 taza de harina de almendra",
+        "1 taza de zanahoria rallada",
+        "2 huevos",
+        "1/4 taza de miel"
+      ],
+      "preparacion": [
+        "Precalienta el horno a 180°C.",
+        "Mezcla todos los ingredientes y vierte en moldes.",
+        "Hornea durante 20 minutos."
+      ]
+    },
+    {
+      "id": 19,
+      "nombre": "Chili de Lentejas",
+      "duracion": "40 minutos",
+      "fav": false,
+      "imagen": "https://tortillasnagual.com/wp-content/uploads/2022/04/Conservar-las-tortillas-de-maiz.jpeg",
+      "ingredientes": [
+        "1 taza de lentejas",
+        "1 cebolla",
+        "1 pimiento",
+        "Especias al gusto"
+      ],
+      "preparacion": [
+        "Cocina las lentejas en agua hasta que estén tiernas.",
+        "Añade la cebolla y el pimiento picados.",
+        "Agrega especias y cocina por 10 minutos."
+      ]
+    },
+    {
+      "id": 20,
+      "nombre": "Ensalada de Frutas",
+      "duracion": "10 minutos",
+      "fav": false,
+      "imagen": "https://tortillasnagual.com/wp-content/uploads/2022/04/Conservar-las-tortillas-de-maiz.jpeg",
+      "ingredientes": [
+        "1 taza de fresas",
+        "1 taza de kiwi",
+        "1 taza de piña",
+        "Miel al gusto"
+      ],
+      "preparacion": [
+        "Corta todas las frutas en trozos.",
+        "Mezcla en un tazón y añade miel.",
+        "Sirve fresca."
+      ]
+    }
+  ]
+  
