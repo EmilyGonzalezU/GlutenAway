@@ -1,7 +1,31 @@
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">StarterTab</ion-title>
+  <ion-header *ngIf="inRecipes" [translucent]="true">
+    <ion-toolbar class="recipesToolbar">
+      <ion-row class="ion-justify-content-center">
+        <ion-col size="1"></ion-col>
+        <ion-col size="10">
+          <ion-searchbar
+            class="searchRecipes"
+            animated
+            placeholder="Search..."
+          ></ion-searchbar>
+        </ion-col>
+        <ion-col size="1"></ion-col>
+      </ion-row>
+
+      <ion-toolbar>
+        <ion-segment color="warning" value="all">
+          <ion-segment-button routerLink="recipes">
+            <ion-label>Para ti</ion-label>
+          </ion-segment-button>
+          <ion-segment-button routerLink="favorite">
+            <ion-label>Favoritos</ion-label>
+          </ion-segment-button>
+          <ion-segment-button routerLink="myrecipes">
+            <ion-label>Mis Recetas</ion-label>
+          </ion-segment-button>
+        </ion-segment>
+      </ion-toolbar>
     </ion-toolbar>
   </ion-header>
 

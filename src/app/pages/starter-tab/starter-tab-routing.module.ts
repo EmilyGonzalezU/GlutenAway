@@ -7,6 +7,8 @@ import { ScannerComponent } from 'src/app/components/scanner/scanner.component';
 import { SettingsComponent } from 'src/app/components/settings/settings.component';
 import { AuthGuard } from 'src/app/guard/auth.guard';
 import { AddNewRecipeComponent } from 'src/app/components/add-new-recipe/add-new-recipe.component';
+import { FavoriteComponent } from 'src/app/components/favorite/favorite.component';
+import { MyrecipesComponent } from 'src/app/components/myrecipes/myrecipes.component';
 
 
 const routes: Routes = [
@@ -34,6 +36,14 @@ const routes: Routes = [
       {
         path: 'settings',
         component: SettingsComponent
+      },
+      {
+        path: 'favorite',
+        component: FavoriteComponent
+      },
+      {
+        path: 'myrecipes',
+        component: MyrecipesComponent
       },
     ]
   }

@@ -11,10 +11,9 @@ export class RecipesComponent implements OnInit {
   optionSelected: string = 'forYou';
   isModalOpen = false;
   openRecipe: any = null;
-  searchTerm: string = ''; // Término de búsqueda
-  allRecipes: any[] = []; // Lista completa de recetas desde la API
-  recipes: any[] = []; // Lista filtrada de recetas para mostrar
-
+  searchTerm: string = ''; 
+  allRecipes: any[] = []; 
+  recipes: any[] = []; 
   constructor(private router: Router, private recipeService: RecipeService) {}
 
   ngOnInit() {

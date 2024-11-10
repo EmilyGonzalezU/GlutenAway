@@ -14,10 +14,15 @@ export class NotfoundPage implements OnInit {
   ngOnInit() {
   }
 
-  nav(){
-    if(this.auth.isLoggedIn !==null){
-      this.router.navigate(['/starter-tab']);
-    }else{
+  nav() {
+    if (this.auth.isLoggedIn !== null) {
+      this.router.navigate(['/starter-tab/recipes']).then(() => {
+        const starterTabPage = document.querySelector('app-starter-tab');
+        if (starterTabPage) {
+          (starterTabPage as any).inRecipes = true;
+        }
+      });
+    } else {
       this.router.navigate(['/login']);
     }
   }

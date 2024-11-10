@@ -16,10 +16,12 @@ import { SettingsComponent } from './components/settings/settings.component';
 import { RecipesComponent } from './components/recipes/recipes.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MapsComponent } from './components/maps/maps.component';
+import { FavoriteComponent } from './components/favorite/favorite.component';
+import { MyrecipesComponent } from './components/myrecipes/myrecipes.component';
 
 @NgModule({
   //Fire base providers
-  declarations: [AppComponent, ScannerComponent, RecipesComponent, SettingsComponent, MapsComponent],
+  declarations: [AppComponent, ScannerComponent, RecipesComponent, SettingsComponent, MapsComponent, FavoriteComponent, MyrecipesComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },

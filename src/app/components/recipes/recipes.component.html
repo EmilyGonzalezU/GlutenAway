@@ -1,39 +1,4 @@
-<ion-header [translucent]="true">
-  <ion-toolbar class="recipesToolbar">
-    <ion-row class="ion-justify-content-center">
-      <ion-col size="1"></ion-col>
-      <ion-col size="10">
-        <ion-searchbar
-          class="searchRecipes"
-          animated
-          placeholder="Search..."
-        ></ion-searchbar>
-      </ion-col>
-      <ion-col size="1"></ion-col>
-    </ion-row>
-
-    <ion-toolbar>
-      <ion-segment
-        color="warning"
-        value="all"
-        [(ngModel)]="optionSelected"
-        (ionChange)="changeOption(optionSelected)"
-      >
-        <ion-segment-button value="forYou">
-          <ion-label>Para ti</ion-label>
-        </ion-segment-button>
-        <ion-segment-button value="favorites">
-          <ion-label>Favoritos</ion-label>
-        </ion-segment-button>
-        <ion-segment-button value="myrecipes">
-          <ion-label>Mis Recetas</ion-label>
-        </ion-segment-button>
-      </ion-segment>
-    </ion-toolbar>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content [fullscreen]="true" bounce="true">
+<ion-content [fullscreen]="true" bounce="true" style="padding-top: 30vh">
   <ion-card *ngFor="let receta of recipes" (click)="setOpen(true, receta)">
     <ion-img [src]="receta.imagen" alt="{{ receta.nombre }}"></ion-img>
     <ion-row>

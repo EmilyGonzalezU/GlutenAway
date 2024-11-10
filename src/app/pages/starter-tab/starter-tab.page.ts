@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { Auth } from '@angular/fire/auth';
 
 @Component({
@@ -8,9 +8,17 @@ import { Auth } from '@angular/fire/auth';
   styleUrls: ['./starter-tab.page.scss'],
 })
 export class StarterTabPage implements OnInit {
-
+  inRecipes : boolean = false;
   constructor(private router: Router, private auth: Auth) {
     this.router.navigate(['starter-tab/recipes']);
+
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd){
+        this.inRecipes = event.url.includes('recipes') ||
+        event.url.includes('favorite') ||
+        event.url.includes('myrecipes');
+      }
+    })
   }
 
   ngOnInit() {
@@ -21,4 +29,7 @@ export class StarterTabPage implements OnInit {
     this.router.navigate(['starter-tab/'+direccion]);
   }
 
+  showSearchBar(){
+
+  }
 }
