@@ -8,8 +8,6 @@ import { StarterTabPageRoutingModule } from './starter-tab-routing.module';
 
 import { StarterTabPage } from './starter-tab.page';
 import { AddNewRecipeComponent } from 'src/app/components/add-new-recipe/add-new-recipe.component';
-import { MyrecipesComponent } from 'src/app/components/myrecipes/myrecipes.component';
-import { FavoriteComponent } from 'src/app/components/favorite/favorite.component';
 
 @NgModule({
   imports: [
@@ -19,6 +17,6 @@ import { FavoriteComponent } from 'src/app/components/favorite/favorite.componen
     StarterTabPageRoutingModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  declarations: [StarterTabPage, AddNewRecipeComponent, MyrecipesComponent]
+  declarations: [StarterTabPage, AddNewRecipeComponent]
 })
 export class StarterTabPageModule {}

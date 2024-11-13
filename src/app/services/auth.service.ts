@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Auth, signInWithPopup, GoogleAuthProvider, signInWithEmailAndPassword, createUserWithEmailAndPassword } from '@angular/fire/auth';
-import { getFirestore, doc, setDoc, collection, Firestore, getDoc, addDoc } from "firebase/firestore";
+import { getFirestore, doc, setDoc, collection, Firestore, getDoc, addDoc , getDocs} from "firebase/firestore";
 import { Router } from '@angular/router';
 import { GoogleAuth } from '@codetrix-studio/capacitor-google-auth';
 @Injectable({
@@ -58,7 +58,7 @@ export class AuthService {
       this.isLoading = false;
     }
   }
-
+  /**Obtiene la informacion del usuario mediante el email */
   async getUserInfo(email: string) {
     const userRef = doc(this.db, `users/${email}`);
     const userDoc = await getDoc(userRef);
@@ -71,12 +71,14 @@ export class AuthService {
     }
   }
 
+  /**Metodo que valida si el usario esta logeado */
   isLoggedIn(): boolean {
+    //Llama a metodo initializeauth
     const user = this.initializeauth();
     return user !== null;  
   }
 
-  // Method  logOut
+  // Method  logOut 
   logout() {
     this.auth.signOut().then(async () => {
       try {
@@ -142,6 +144,32 @@ export class AuthService {
       console.log('reseta add');
     } catch (error) {
       console.log('no se pudo');
+    }
+  }
+
+  async getUserRecipes(email: string) {
+    try {
+      // Verifica si el usuario existe primero
+      const user = await this.getUserInfo(email);
+      if (!user) {
+        console.log('El usuario no existe.');
+        return null;
+      }
+  
+      // Obtiene la lista de recetas del usuario
+      const recipesRef = collection(this.db, `users/${email}/recipes`);
+      const recipesSnapshot = await getDocs(recipesRef);
+  
+      // Mapea los documentos de recetas en un array
+      const recipes = recipesSnapshot.docs.map(doc => ({
+        id: doc.id,
+        ...doc.data()
+      }));
+  
+      return recipes;
+    } catch (error) {
+      console.log('Error al obtener recetas');
+      return [];
     }
   }
   getCurrentUserEmail()  {

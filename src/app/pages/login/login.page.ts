@@ -25,9 +25,16 @@ export class LoginPage implements OnInit {
   ) { }
 
   ngOnInit() {
+    //Scroll de carga para el login
     this.isLoading = this.authService.isLoading;
    }
 
+   /**Metodo de login el cual antes de ingresar el usuario se valida si los campos ingresados son correctos
+    * Los metodos de validacion de correo y toast son llamados de un sharedService el cual sirve para compartir metodos, algo util para reclicar codigo.
+    * Una vez validados los ingresos pasa por la validacion de firebase donde "injecta" los datos inigresados para ser validados porstiormente por los
+    * metodos establecidos en el authService con el metodo initializeAuth()
+    * En caso de haber un error no se puede diferenciar si es que es por correo o contraseña, por eso es la razon del mensaje general.
+    */
   async loginFunction() {
     const invalidFields = [];
 
@@ -63,14 +70,16 @@ export class LoginPage implements OnInit {
     }
   }
 
+  /**Metodo de navegacion a el registro de usuario */
   navRegistration() {
     return this.router.navigate(['/registration']);
   }
-
+  /**Metodo de navegacion para la recuperacion de contraseña */
   navRecuperation() {
     return this.router.navigate(['/recpassword']);
   }
 
+  /**Metodo de navegacion a loginOptions (home) */
   navLoginOptions() {
     return this.router.navigate(['/loginoptions']);
   }

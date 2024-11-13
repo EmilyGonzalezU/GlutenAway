@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { RecipeService } from 'src/app/services/recipe.service';
-
+import { AuthService } from 'src/app/services/auth.service';
 @Component({
   selector: 'app-recipes',
   templateUrl: './recipes.component.html',
@@ -14,7 +14,7 @@ export class RecipesComponent implements OnInit {
   searchTerm: string = ''; 
   allRecipes: any[] = []; 
   recipes: any[] = []; 
-  constructor(private router: Router, private recipeService: RecipeService) {}
+  constructor(private authService : AuthService, private router: Router, private recipeService: RecipeService) {}
 
   ngOnInit() {
     this.recipeService.getRecetas().subscribe(
@@ -28,20 +28,21 @@ export class RecipesComponent implements OnInit {
     );
   }
 
- toggleFavorite(event: Event, recipe: any) {
-  event.stopPropagation();
-  recipe.fav = !recipe.fav;
-  this.recipeService.updateFavorite(recipe).subscribe(
-    (response) => {
-      console.log(`Receta actualizada en la API: ${recipe.id}`);
-      this.filterRecipes(); // Refresca la lista de favoritos
-    },
-    (error) => {
-      console.error('Error al actualizar el favorito:', error);
-      recipe.fav = !recipe.fav; 
-    }
-  );
-}
+  toggleFavorite(event: Event, recipe: any) {
+    event.stopPropagation();
+    recipe.fav = !recipe.fav; // Cambia el valor de fav entre true y false
+  
+    this.recipeService.updateFavorite(recipe).subscribe(
+      (response) => {
+        console.log(`Estado de favorito actualizado para la receta: ${recipe.id}`);
+        this.filterRecipes();
+      },
+      (error) => {
+        console.error('Error al actualizar el favorito:', error);
+        recipe.fav = !recipe.fav; // Revertir el cambio en caso de error
+      }
+    );
+  }
 
   changeOption(option: string) {
     this.optionSelected = option;
@@ -73,5 +74,11 @@ export class RecipesComponent implements OnInit {
 
   addNewRecipe() {
     this.router.navigate(['/starter-tab/add-new-recipe']);
+  }
+  user: any = null;
+  logOut() {
+    this.authService.logout();
+    localStorage.removeItem('googleUser'); // Limpiar localStorage
+    this.user = null; // Restablecer el objeto user
   }
 }

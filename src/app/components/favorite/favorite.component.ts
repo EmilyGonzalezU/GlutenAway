@@ -1,16 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { RecipeService } from 'src/app/services/recipe.service';
+
 @Component({
   selector: 'app-favorite',
   templateUrl: './favorite.component.html',
   styleUrls: ['./favorite.component.scss'],
 })
-export class FavoriteComponent  implements OnInit {
+export class FavoriteComponent {
+  favoriteRecipes: any[] = [];
 
   constructor(private recipeService: RecipeService) { }
-  favoriteRecipes: any[] = [];
-  ngOnInit() {
-    this.loadFavoriteRecipes();
+
+  ionViewWillEnter() {
+    this.loadFavoriteRecipes(); 
   }
 
   loadFavoriteRecipes() {
@@ -19,7 +21,7 @@ export class FavoriteComponent  implements OnInit {
         this.favoriteRecipes = recipes;
       },
       (error) => {
-        console.error('Error al obtener recetas favoritas:', error);
+        console.error('Error al obtener recetas favoritas');
       }
     );
   }

@@ -29,6 +29,7 @@ export class RegistrationPage implements OnInit {
 
   ngOnInit() {}
 
+  /**Datos en vacio para ser llamados dentro de los metodos y almacenarlos */
   registration: any = {
     nombre: "",
     correo: "",
@@ -36,7 +37,9 @@ export class RegistrationPage implements OnInit {
   }
 
   field: string = "";
-
+  /**Metodo de registro el cual valida primero que todos los datos esten correctos al igual  que el login el metodo de error
+   * es llamado del sharedService ya que, se utiliza en varias pages.
+   */
   async registrationValidation() {
     const invalidFields = [];
 
@@ -55,6 +58,7 @@ export class RegistrationPage implements OnInit {
       invalidFields.push('contrasena');
     }
 
+    /**Una vez validados los datos se llama al authService para almacenar los datos de correo, contraseña y nombre */
     if (invalidFields.length > 0) {
       this.sharedService.presentToast("top", "Por favor, completa los campos correctamente.");
     } else {
@@ -71,6 +75,7 @@ export class RegistrationPage implements OnInit {
     }
   }
 
+  /**Metodo de navegacion al login */
   navLogin() {
     return this.router.navigate(['/login']);
   }

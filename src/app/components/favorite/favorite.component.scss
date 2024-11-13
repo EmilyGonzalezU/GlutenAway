@@ -1,3 +1,77 @@
-ion-content{
-    text-align: center;
+
+
+ion-row{
+    --ion-padding-start: 0;
+    --ion-padding-end: 0;
 }
+
+.flex-col {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+
+  
+//toolbar
+.recipesToolbar{
+    --background-color: transparent;
+    --color: #fff;
+    --backdrop-filter: blur(10px);
+    --position: relative;
+}
+
+
+
+.recipesButton{
+    --border-radius: 20px;
+    --background: #FFFFFF;
+    --background-hover: #FFC300;
+    --background-activated: #FFC300;
+    --background-focused: #FFC300;
+    --color: #000;
+    font-size: 9px;
+    font-weight: lighter;
+}
+
+//Favorite button
+.star-button {
+    --padding-start: 0;
+    --padding-end: 0;
+    --padding-top: 0;
+    --padding-bottom: 0;
+    --background: transparent; 
+    --border-radius: 50%; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: none;
+  }
+  
+  .star-button ion-icon {
+    color: #FFC300; 
+    font-size: 24px; 
+  }
+  
+  .star-button:active{
+    transform: scale(1.2); 
+  }
+
+  
+// addRecipe button
+.addRecipe{
+  --background: #FFC300 !important;
+}
+
+.iconAddRecipe{
+  color: #FFFFFF !important;
+}
+
+
+//Modal
+h2{
+  text-align: center;
+  font-size: bold;
+}
+
+

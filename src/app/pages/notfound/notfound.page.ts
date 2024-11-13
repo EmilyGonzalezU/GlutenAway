@@ -13,7 +13,10 @@ export class NotfoundPage implements OnInit {
 
   ngOnInit() {
   }
-
+  
+  /**Metodo de pagina 404 el cual diferencia si es que el usuario esta logeado o no, si el usuario esta logeado envia a starter/tab
+   * de lo contrario envia al login.
+   */
   nav() {
     if (this.auth.isLoggedIn !== null) {
       this.router.navigate(['/starter-tab/recipes']).then(() => {

@@ -13,20 +13,28 @@ export class RecipeService {
 
   constructor(private http: HttpClient) { }
 
-  getRecetas(): Observable<any> {
-    return this.http.get<any>(this.apiUrl);
+  getRecetas(): Observable<any[]> {
+    return this.http.get<any>(this.apiUrl).pipe(
+      map(recipesData => {
+        return Object.keys(recipesData).map(key => ({
+          firebaseKey: key,
+          ...recipesData[key],  
+          id: recipesData[key].id,
+          
+        }));
+      })
+    );
   }
 
   updateFavorite(recipe: any): Observable<any> {
-    return this.http.patch(`${this.url2}/recipes/${recipe.id}.json`, { fav: recipe.fav });
+    return this.http.patch(`${this.url2}/recipes/${recipe.firebaseKey}.json`, { fav: recipe.fav });
   }
-
   getFavoriteRecipes(): Observable<any[]> {
     return this.http.get<any>(this.apiUrl).pipe(
       map(recipes => {
         return Object.keys(recipes)
-          .map(key => ({ id: key, ...recipes[key] })) // Convertir el objeto en un array de recetas
-          .filter(recipe => recipe.fav === true); // Filtrar solo recetas favoritas
+          .map(key => ({ id: key, ...recipes[key] })) 
+          .filter(recipe => recipe.fav === true); 
       })
     );
   }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-myrecipes',
@@ -7,8 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MyrecipesComponent  implements OnInit {
 
-  constructor() { }
-
-  ngOnInit() {}
+  constructor(private authService : AuthService) { }
+  recipes: any[] = [];
+    async ngOnInit() {
+    const email = this.authService.getCurrentUserEmail(); 
+    if (email) {
+      this.recipes = await this.authService.getUserRecipes(email) || [];
+    } else {
+      console.log('No hay usuario autenticado');
+    }
+  }
 
 }

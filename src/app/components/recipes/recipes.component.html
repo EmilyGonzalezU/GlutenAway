@@ -1,4 +1,5 @@
-<ion-content [fullscreen]="true" bounce="true" style="padding-top: 30vh">
+<ion-content [fullscreen]="true" bounce="true">
+  <ion-card style="margin-bottom: 30vw"></ion-card>
   <ion-card *ngFor="let receta of recipes" (click)="setOpen(true, receta)">
     <ion-img [src]="receta.imagen" alt="{{ receta.nombre }}"></ion-img>
     <ion-row>
@@ -71,4 +72,7 @@
       </ion-content>
     </ng-template>
   </ion-modal>
+  <ion-item button class="separator" (click)="logOut()">
+    <ion-label>Cerrar sesión</ion-label>
+  </ion-item>
 </ion-content>

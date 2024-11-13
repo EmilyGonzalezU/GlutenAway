@@ -14,9 +14,15 @@ export class SettingsComponent implements OnInit {
   constructor(private authService: AuthService, private auth: Auth) {}
 
   ngOnInit() {
+    //Aca se llama a el usuario cuando la pagina se inicializa 
     this.loadUserInfo();
   }
 
+  /**Metodo que carga la informacion del usuario, aca hace una condicion dependiendo del usuario que este logeando
+   * user "normal" o user google para extraer al usuario "normal" solo hace validaciones con metodos de firebase en este caso auth.
+   * En el caso de google este hace un user almacenado en localStorage cada que se inicie sesion con este. Para llamarlo queda almacenado en googleUser.
+   * Ese objeto almacena el nombre, email y foto 
+   */
   loadUserInfo() {
     onAuthStateChanged(this.auth, async (currentUser) => {
       if (currentUser) {
@@ -24,10 +30,10 @@ export class SettingsComponent implements OnInit {
           if (currentUser.email) {
             this.user = await this.authService.getUserInfo(currentUser.email);
           } else {
-            console.error('El correo del usuario no está disponible.');
+            console.log('El correo del usuario no está disponible.');
           }
         } catch (error) {
-          console.error('Error al cargar información del usuario');
+          console.log('Error al cargar información del usuario');
         }
       } else {
         const googleUser = localStorage.getItem('googleUser');
@@ -43,6 +49,10 @@ export class SettingsComponent implements OnInit {
     });
   }
   
+  /**Este metodo cierra la sesion de los usuarios ya sea con google o usuario "normal", tambien elimina el usuario que se encuentra almacenado
+   * en el localStorage y en caso de que sea usuario "normal" lo vuelve nulo para asegurar que no quede ningun registro del usuario que habia estado
+   * logeado anteriormente.
+   */
   logOut() {
     this.authService.logout();
     localStorage.removeItem('googleUser'); // Limpiar localStorage

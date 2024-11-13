@@ -2,6 +2,9 @@
   <ion-list lines="none" *ngIf="user">
     <ion-item class="profile-section separator" lines="none">
       <ion-avatar slot="start">
+        <!--Aca la imagen tiene parametros, ya que, puede que tenga o no imagen. Cuando es un usuario "normal" el usuario de por si 
+        no tiene imagen, por ende se le pone una predeterminada. En caso de Google a veces el usuario tiene imagen de perfil. Ahi se extrae
+        la URL y la muestra.-->
         <img
           [src]="
             user.imagen ||

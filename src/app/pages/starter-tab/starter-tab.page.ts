@@ -11,7 +11,9 @@ export class StarterTabPage implements OnInit {
   inRecipes : boolean = false;
   constructor(private router: Router, private auth: Auth) {
     this.router.navigate(['starter-tab/recipes']);
-
+    /**Lo que hace esto es que "escucha"(?) los cambios de pages, por ende sabe en que page esta el usuario
+     * entonces si el usuario no esta en las pages especificadas (recipes, favorites & myrecipes) lo muestra, si no, no.
+     */
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd){
         this.inRecipes = event.url.includes('recipes') ||
@@ -23,7 +25,7 @@ export class StarterTabPage implements OnInit {
 
   ngOnInit() {
   }
-
+  
   segmentChanged($event:any){
     let direccion = $event.detail.value;
     this.router.navigate(['starter-tab/'+direccion]);
