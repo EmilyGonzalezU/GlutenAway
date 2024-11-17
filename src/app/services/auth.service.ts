@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Auth, signInWithPopup, GoogleAuthProvider, signInWithEmailAndPassword, createUserWithEmailAndPassword } from '@angular/fire/auth';
+import { Auth, signInWithPopup, GoogleAuthProvider, signInWithEmailAndPassword, createUserWithEmailAndPassword, sendPasswordResetEmail } from '@angular/fire/auth';
 import { getFirestore, doc, setDoc, collection, Firestore, getDoc, addDoc , getDocs} from "firebase/firestore";
 import { Router } from '@angular/router';
 import { GoogleAuth } from '@codetrix-studio/capacitor-google-auth';
@@ -118,7 +118,7 @@ export class AuthService {
           this.router.navigate(['/starter-tab/recipes']);
         } else {
           console.log('usuario no logueado');
-          this.router.navigate(['/login']);
+          this.router.navigate(['/loginoptions']);
         }
       }
     });
@@ -174,5 +174,10 @@ export class AuthService {
   }
   getCurrentUserEmail()  {
     return this.currentUser;
+  }
+
+  /**Recuperacion de contraseña con metodo firebase */
+  resetPass(email:string): Promise<void>{
+    return sendPasswordResetEmail(this.auth, email);
   }
 }

@@ -75,10 +75,4 @@ export class RecipesComponent implements OnInit {
   addNewRecipe() {
     this.router.navigate(['/starter-tab/add-new-recipe']);
   }
-  user: any = null;
-  logOut() {
-    this.authService.logout();
-    localStorage.removeItem('googleUser'); // Limpiar localStorage
-    this.user = null; // Restablecer el objeto user
-  }
 }

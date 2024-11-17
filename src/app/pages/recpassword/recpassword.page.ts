@@ -2,9 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { SharedService } from '@srs/shared.service';
 import { Router } from '@angular/router';
 import { ToastController, ModalController  } from '@ionic/angular';
-import { Keyboard } from '@capacitor/keyboard';
 import { AlertController } from '@ionic/angular';
-
+import { AuthService } from 'src/app/services/auth.service';
 @Component({
   selector: 'app-recpassword',
   templateUrl: './recpassword.page.html',
@@ -20,22 +19,16 @@ export class RecpasswordPage implements OnInit {
   field: string = "";
 
   constructor(
+    private authService: AuthService,
     private sharedService: SharedService, 
     private router: Router, 
     public toastController: ToastController, 
     private alertController: AlertController
   ) { }
    
-  isKeyboardOpen = false;
 
   ngOnInit() {
-    Keyboard.addListener('keyboardWillShow', () => {
-      this.isKeyboardOpen = true;
-    });
-
-    Keyboard.addListener('keyboardWillHide', () => {
-      this.isKeyboardOpen = false;
-    });
+  
   }
   
   async presentAlert() {
@@ -47,22 +40,24 @@ export class RecpasswordPage implements OnInit {
     await alert.present(); 
   }
 
-  recuperationValidation() {
-    const invalidFields = [];
-
-    if (this.recuperation.correo.trim() == "" || !this.sharedService.emailValid(this.recuperation.correo)) {
-      invalidFields.push('correo');
+  async recuperationValidation() {
+    if (this.recuperation.correo.trim() === "" || !this.sharedService.emailValid(this.recuperation.correo)) {
       this.sharedService.errorVibration(['correo']);
+      this.sharedService.presentToast("top", "Por favor, ingresa un correo válido.");
+      return;
     }
-  
-    if (invalidFields.length > 0) {
-      this.sharedService.presentToast("top", "Por favor, completa los campos correctamente");
-    } else {
-      this.presentAlert();
-      //Resuelto error de usabilidad 
+
+    try {
+      // Llamada al servicio para enviar el correo de recuperacion
+      await this.authService.resetPass(this.recuperation.correo);
+      this.presentAlert()
       this.router.navigate(['/login']);
+    } catch (error) {
+      console.error(error);
+      this.sharedService.presentToast("top", "Hubo un error al enviar el correo. Inténtalo nuevamente.");
     }
   }
+
 
   navLogin(){
     return this.router.navigate(['/login']);
