@@ -18,7 +18,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { MapsComponent } from './components/maps/maps.component';
 import { FavoriteComponent } from './components/favorite/favorite.component';
 import { MyrecipesComponent } from './components/myrecipes/myrecipes.component';
-
+import { EmailComposer } from '@awesome-cordova-plugins/email-composer/ngx';
 @NgModule({
   //Fire base providers
   declarations: [AppComponent, ScannerComponent, RecipesComponent, SettingsComponent, MapsComponent, FavoriteComponent, MyrecipesComponent],
@@ -26,7 +26,7 @@ import { MyrecipesComponent } from './components/myrecipes/myrecipes.component';
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     BarcodeScanner,provideFirebaseApp(() => initializeApp(environment.firebaseConfig )),
-    provideFirestore(() => getFirestore()),provideAuth(() => getAuth())
+    provideFirestore(() => getFirestore()),provideAuth(() => getAuth()), EmailComposer
   ],
   bootstrap: [AppComponent],
 })

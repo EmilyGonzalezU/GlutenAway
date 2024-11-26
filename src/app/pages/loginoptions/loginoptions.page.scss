@@ -23,6 +23,7 @@ ion-button{
 #open-modal{
   font-size: 20px;
   color: var(--ion-text-color);
+  margin: 20px;
 }
 
 ion-modal {
@@ -30,11 +31,12 @@ ion-modal {
 }
 
 h3 {
-  font-size: 36px;
+  font-size: 32px;
   font-weight: 700;
   align-self: start !important;
   line-height: 1.2;
   padding-left: 30px;
+  margin-bottom: 20px;
 }
 
 h2{

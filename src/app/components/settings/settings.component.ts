@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { Auth } from '@angular/fire/auth';
 import { onAuthStateChanged } from 'firebase/auth';
+import { EmailComposer } from '@awesome-cordova-plugins/email-composer/ngx';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-settings',
@@ -11,7 +13,7 @@ import { onAuthStateChanged } from 'firebase/auth';
 export class SettingsComponent implements OnInit {
   user: any = null;
 
-  constructor(private authService: AuthService, private auth: Auth) {}
+  constructor(private emial: EmailComposer, private authService: AuthService, private auth: Auth) {}
 
   ngOnInit() {
     //Aca se llama a el usuario cuando la pagina se inicializa 
@@ -58,4 +60,30 @@ export class SettingsComponent implements OnInit {
     localStorage.removeItem('googleUser'); // Limpiar localStorage
     this.user = null; // Restablecer el objeto user
   }
+
+  /**Metodo para enviar email de soporte a glutenAway */
+  /**
+   * sendEmail() {
+    console.log('EmailComposer:', this.emial); // Depuración
+  
+    if (!this.emial) {
+      console.error('EmailComposer no está disponible.');
+      return;
+    }
+  
+    this.emial.isAvailable().then((available: boolean) => {
+      if (available) {
+        const email = {
+          to: 'shopd324@gmail.com',
+          subject: 'Soporte Gluten Away',
+          body: 'Describe aquí tu problema o consulta.',
+          isHtml: true,
+        };
+        this.emial.open(email);
+      } else {
+        console.log('No se puede enviar el correo.');
+      }
+    });
+  }  
+   */
 }

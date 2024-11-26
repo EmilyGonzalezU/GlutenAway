@@ -33,6 +33,14 @@
         <ion-label>Correo:</ion-label>
         <ion-text>{{ user.email }}</ion-text>
       </ion-item>
+      <ion-item class="separator">
+        <ion-label>Contactanos:</ion-label>
+        <ion-button
+          href="mailto:shopd324@gmail.com?subject=Soporte Gluten Away&body=Describe aquí tu problema o consulta."
+        >
+          GlutenAwaySoporte
+        </ion-button>
+      </ion-item>
       <ion-item button class="separator" (click)="logOut()">
         <ion-label>Cerrar sesión</ion-label>
       </ion-item>

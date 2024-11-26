@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { BarcodeScanner, BarcodeScannerOptions } from '@awesome-cordova-plugins/barcode-scanner/ngx';
+import { RecipeService } from 'src/app/services/recipe.service';
 
 @Component({
   selector: 'app-scanner',
@@ -12,7 +13,7 @@ export class ScannerComponent {
   //aCA van los codigos escaneados (para despues compararlos)
   scannedCodes: string[] = [];
   scanning: boolean = false;
-  constructor(private barcodeScanner: BarcodeScanner) {}
+  constructor(private recipeService: RecipeService, private barcodeScanner: BarcodeScanner) {}
 
 
   startScan() {
@@ -41,5 +42,16 @@ export class ScannerComponent {
   // Metodo para comparar el codigo escaneado con otros valores "Base de datos"
   compareScannedCode(codeToCompare: string): boolean {
     return this.scannedCodes.includes(codeToCompare);
+  }
+
+  //Array vacia para almacenar codigos
+  code: any[] = [];
+
+  ngOnInit() {
+    this.recipeService.getCodeBars().subscribe(
+      (data) => {
+        this.code = data;
+      }
+    );
   }
 }

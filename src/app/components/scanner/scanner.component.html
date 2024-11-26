@@ -10,10 +10,9 @@
     <ion-col>
       <ion-card>
         <ion-card-header>
-          <ion-card-title>Resultado del Escaneo</ion-card-title>
+          <ion-card-title>Resultado del Escaneo:</ion-card-title>
         </ion-card-header>
         <ion-card-content>
-          <!--Creacion api con code bar, extraer ingredientes y analizar -->
           {{ scannedCode }}
         </ion-card-content>
       </ion-card>
@@ -26,4 +25,8 @@
       </ion-item>
     </ion-col>
   </ion-row>
+  <!--Codigo momentaneo con codigo de BD-->
+  <ion-card *ngFor="let code of code">
+    <ion-card-content>{{ code.codigo }}</ion-card-content>
+  </ion-card>
 </ion-content>

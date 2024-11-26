@@ -24,5 +24,12 @@
   .separator {
     border-bottom: 1px solid #dcdcdc;
     margin-bottom: 10px; 
+    
   }
   
+  ion-button{
+    --background: #ffc300;
+    color: var(--ion-text-color);
+    font-weight: bold;
+    text-transform: none;
+}

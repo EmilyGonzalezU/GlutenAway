@@ -36,7 +36,7 @@
     >
       <ion-button id="open-modal" expand="block"> Comenzar </ion-button>
 
-      <p style="font-size: 18px">
+      <p style="font-size: 15px">
         ¿No tienes una cuenta?
         <a
           (click)="navRegistration()"
@@ -51,7 +51,7 @@
   <ion-modal
     #modal
     trigger="open-modal"
-    [initialBreakpoint]="0.25"
+    [initialBreakpoint]="0.35"
     [breakpoints]="[0.25, 0.5, 1]"
   >
     <ng-template>

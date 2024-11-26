@@ -12,6 +12,14 @@ const config: CapacitorConfig = {
       ],
       serverClientId: '353111503726-i2m909hhm96fggdenpeskvu4illps328.apps.googleusercontent.com',
       forceCodeForRefreshToken: true
+    },
+    "EmailComposer": {
+      "ios": {
+        "usesApp": true
+      },
+      "android":{
+        "usesApp": true
+      }
     }
   }
 };
