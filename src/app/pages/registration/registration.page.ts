@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { AuthService } from 'src/app/services/auth.service'; 
 import { Injectable } from '@angular/core';
+import { EmialjsService } from 'src/app/services/emialjs.service';
 
 @Injectable({
   providedIn: 'root' 
@@ -20,7 +21,8 @@ export class RegistrationPage implements OnInit {
     private sharedService: SharedService,
     private router: Router,
     public toastController: ToastController,
-    private authService: AuthService 
+    private authService: AuthService,
+    private emailService: EmialjsService,
   ) {
 
    }
@@ -68,6 +70,8 @@ export class RegistrationPage implements OnInit {
           this.registration.contrasena,
           this.registration.nombre
         );
+        //Aca se envia el correo, tomando los parametros rescatados en el registro (nombre y correo)s
+        await this.emailService.sendEmailJs(this.registration.nombre, this.registration.correo);
         this.router.navigate(['/starter-tab']);
       } catch (error) {
         this.sharedService.presentToast("top", "Error al registrar.");
