@@ -1,9 +1,10 @@
 <ion-content>
+  <!-- Botón para escanear producto -->
   <ion-row>
     <ion-col>
-      <ion-button expand="full" (click)="startScan()"
-        >Escanear producto.</ion-button
-      >
+      <ion-button expand="full" (click)="startScan()">
+        Escanear producto.
+      </ion-button>
     </ion-col>
   </ion-row>
   <ion-row *ngIf="scannedCode">
@@ -13,20 +14,23 @@
           <ion-card-title>Resultado del Escaneo:</ion-card-title>
         </ion-card-header>
         <ion-card-content>
-          {{ scannedCode }}
+          Código escaneado: {{ scannedCode }}
         </ion-card-content>
       </ion-card>
     </ion-col>
   </ion-row>
-  <ion-row *ngIf="error">
+
+  <ion-row *ngFor="let code of code">
     <ion-col>
-      <ion-item color="danger">
-        <ion-label>{{ error }}</ion-label>
-      </ion-item>
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>Código: {{ code.codigo }}</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          Producto: {{ code.producto }} <br />
+          Gluten: {{ code.containGluten ? "Contiene Gluten" : "Sin Gluten" }}
+        </ion-card-content>
+      </ion-card>
     </ion-col>
   </ion-row>
-  <!--Codigo momentaneo con codigo de BD-->
-  <ion-card *ngFor="let code of code">
-    <ion-card-content>{{ code.codigo }}</ion-card-content>
-  </ion-card>
 </ion-content>

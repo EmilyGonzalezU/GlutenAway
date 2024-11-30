@@ -29,18 +29,7 @@ export class RecipeService {
       })
     );
   }
-  /**Metodo que obtiene los codigos de barras meidante el id de firebase (no cuentan con id propio cada codigo) */
-  getCodeBars(): Observable<any[]> {
-    //Api 3 con codebars
-    return this.http.get<any>(this.apiUrl3).pipe(
-      map(data => {
-        return Object.keys(data).map(key => ({
-          id: key,
-          ...data[key],
-        }));
-      })
-    );
-  }
+ 
   
 
 /**Metodo que updatea los favoritos (true -> false viceversa(?) */
@@ -57,5 +46,30 @@ export class RecipeService {
           .filter(recipe => recipe.fav === true); 
       })
     );
+  }
+
+   /**Metodo que obtiene los codigos de barras meidante el id de firebase (no cuentan con id propio cada codigo) */
+   getCodeBars(): Observable<any[]> {
+    //Api 2 con codebars
+    return this.http.get<any>(this.apiUrl3).pipe(
+      map(data => {
+        return Object.keys(data).map(key => ({
+          id: key,
+          ...data[key],
+          containGluten: this.checkGluten(data[key].ingredientes)
+        }));
+      })
+    );
+  }
+
+  private checkGluten(ingredientes: string[]): boolean {
+    const glutenFreeWords = ['sin gluten'];
+    const glutenWords = ['gluten', 'trigo', 'cebada', 'centeno', 'contiene gluten'];
+  
+    if (ingredientes.some(ing => glutenFreeWords.some(keyword => ing.toLowerCase().includes(keyword)))) {
+      return false;
+    }
+  
+    return ingredientes.some(ing => glutenWords.some(keyword => ing.toLowerCase().includes(keyword)));
   }
 }

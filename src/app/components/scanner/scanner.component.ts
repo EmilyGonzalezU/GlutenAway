@@ -54,4 +54,17 @@ export class ScannerComponent {
       }
     );
   }
+
+  getProductDetails(code: string) {
+    const product = this.code.find(item => item.codigo === code);
+    if (product) {
+      return {
+        nombre: product.producto,
+        ingredientes: product.ingredientes.join(', '),
+        tieneGluten: product.tieneGluten
+      };
+    } else {
+      return null;
+    }
+  }
 }
