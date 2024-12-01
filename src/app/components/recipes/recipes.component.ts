@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { RecipeService } from 'src/app/services/recipe.service';
 import { AuthService } from 'src/app/services/auth.service';
+import { ModalController } from '@ionic/angular';
+import { AddNewRecipeComponent } from '../add-new-recipe/add-new-recipe.component';
 @Component({
   selector: 'app-recipes',
   templateUrl: './recipes.component.html',
@@ -14,7 +16,7 @@ export class RecipesComponent implements OnInit {
   searchTerm: string = ''; 
   allRecipes: any[] = []; 
   recipes: any[] = []; 
-  constructor(private authService : AuthService, private router: Router, private recipeService: RecipeService) {}
+  constructor(private modalController: ModalController, private authService : AuthService, private router: Router, private recipeService: RecipeService) {}
 
   ngOnInit() {
     this.recipeService.getRecetas().subscribe(
@@ -26,6 +28,16 @@ export class RecipesComponent implements OnInit {
         console.error('Error fetching recipes:', error);
       }
     );
+  }
+
+  async addNewRecipe() {
+    const modal = await this.modalController.create({
+      component: AddNewRecipeComponent,
+      initialBreakpoint: 0.85, // Ajusta los valores según tu diseño
+      breakpoints: [0.5, 0.85, 1],
+    });
+
+    await modal.present();
   }
 
   toggleFavorite(event: Event, recipe: any) {
@@ -72,7 +84,4 @@ export class RecipesComponent implements OnInit {
     this.openRecipe = null;
   }
 
-  addNewRecipe() {
-    this.router.navigate(['/starter-tab/add-new-recipe']);
-  }
 }

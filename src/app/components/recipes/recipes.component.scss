@@ -73,3 +73,43 @@ h2{
 }
 
 
+/* Contenedor de las recetas */
+.recipe-card {
+  margin: 10px 16px; 
+  border-radius: 10px; 
+  overflow: hidden; 
+}
+
+.recipe-card {
+  margin: 10px 16px;
+  border-radius: 10px; 
+  overflow: hidden; 
+}
+
+/*img tamaño fijo*/
+.recipe-img {
+  width: 100%; 
+  height: 200px; 
+  object-fit: cover; 
+  border-radius: 10px 10px 0 0; 
+}
+
+/* Estilo general de filas */
+ion-row {
+  --ion-padding-start: 0;
+  --ion-padding-end: 0;
+}
+
+
+ion-card-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-align: left;
+}
+
+ion-card-subtitle {
+  font-size: 0.9rem;
+  color: gray;
+}
+
+

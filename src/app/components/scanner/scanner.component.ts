@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { BarcodeScanner, BarcodeScannerOptions } from '@awesome-cordova-plugins/barcode-scanner/ngx';
 import { RecipeService } from 'src/app/services/recipe.service';
 
@@ -7,52 +7,52 @@ import { RecipeService } from 'src/app/services/recipe.service';
   templateUrl: './scanner.component.html',
   styleUrls: ['./scanner.component.scss']
 })
-export class ScannerComponent {
+export class ScannerComponent implements OnInit {
   scannedCode: string = '';
   error: string = '';
-  //aCA van los codigos escaneados (para despues compararlos)
-  scannedCodes: string[] = [];
-  scanning: boolean = false;
+  productDetails: any = null; // Detalles del producto escaneado
+  code: any[] = []; // Lista de productos
+
   constructor(private recipeService: RecipeService, private barcodeScanner: BarcodeScanner) {}
 
-
-  startScan() {
-    this.scanning = true;
-    const options: BarcodeScannerOptions = {
-      prompt: 'Escanea el código de barras de tu producto.'
-    };
-
-    this.barcodeScanner.scan(options).then(barcodeData => {
-      this.scannedCode = barcodeData.text;
-      //Almacena el codigo escaneado
-      this.scannedCodes.push(barcodeData.text);
-      this.error = '';
-      this.scanning = false;
-      //Control de errores
-    }).catch(err => {
-      this.error = 'Error: ' + err;
-      this.scannedCode = '';
-      this.scanning = false;
-    });
-  }
-
-  stopScan() {
-    this.scanning = false; // Permite cerrar la vista de escaneo
-  }
-  // Metodo para comparar el codigo escaneado con otros valores "Base de datos"
-  compareScannedCode(codeToCompare: string): boolean {
-    return this.scannedCodes.includes(codeToCompare);
-  }
-
-  //Array vacia para almacenar codigos
-  code: any[] = [];
-
   ngOnInit() {
+    // Cargar productos desde el servicio
     this.recipeService.getCodeBars().subscribe(
       (data) => {
         this.code = data;
+      },
+      (err) => {
+        this.error = 'Error al cargar la base de datos de productos.';
       }
     );
+  }
+  scannedProducts: any[] = []; // Historial de productos escaneados
+
+  startScan() {
+    const options: BarcodeScannerOptions = {
+      prompt: 'Escanea el código de barras de tu producto.'
+    };
+  
+    this.barcodeScanner.scan(options).then(barcodeData => {
+      this.scannedCode = barcodeData.text;
+      this.error = '';
+      const product = this.getProductDetails(this.scannedCode); // obtiene detalles del producto
+  
+      if (product) {
+        this.productDetails = product;
+          const exists = this.scannedProducts.some(p => p.codigo === this.scannedCode);
+        if (!exists) {
+          this.scannedProducts.push({
+            ...product,
+            codigo: this.scannedCode
+          });
+        }
+      }
+    }).catch(err => {
+      this.error = 'Error: ' + err;
+      this.scannedCode = '';
+      this.productDetails = null;
+    });
   }
 
   getProductDetails(code: string) {
@@ -61,9 +61,10 @@ export class ScannerComponent {
       return {
         nombre: product.producto,
         ingredientes: product.ingredientes.join(', '),
-        tieneGluten: product.tieneGluten
+        tieneGluten: product.containGluten
       };
     } else {
+      this.error = 'Producto no encontrado en la base de datos.';
       return null;
     }
   }

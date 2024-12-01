@@ -1,34 +1,71 @@
 <ion-content>
-  <!-- Botón para escanear producto -->
   <ion-row>
     <ion-col>
-      <ion-button expand="full" (click)="startScan()">
-        Escanear producto.
-      </ion-button>
+      <ion-button expand="full" (click)="startScan()"
+        >Escanear producto</ion-button
+      >
     </ion-col>
   </ion-row>
-  <ion-row *ngIf="scannedCode">
+
+  <!--resultado del escaneo -->
+  <ion-row *ngIf="productDetails">
     <ion-col>
       <ion-card>
         <ion-card-header>
-          <ion-card-title>Resultado del Escaneo:</ion-card-title>
+          <ion-card-title>Resultado del Escaneo</ion-card-title>
         </ion-card-header>
         <ion-card-content>
-          Código escaneado: {{ scannedCode }}
+          <p><strong>Código escaneado:</strong> {{ scannedCode }}</p>
+          <p><strong>Producto:</strong> {{ productDetails.nombre }}</p>
+          <p>
+            <strong>Ingredientes:</strong> {{ productDetails.ingredientes }}
+          </p>
+          <p>
+            <strong>Contiene Gluten:</strong>
+            <span
+              [ngClass]="{
+                'text-danger': productDetails.tieneGluten,
+                'text-success': !productDetails.tieneGluten
+              }"
+            >
+              {{
+                productDetails.tieneGluten ? "Si Contiene Gluten" : "Sin Gluten"
+              }}
+            </span>
+          </p>
         </ion-card-content>
       </ion-card>
     </ion-col>
   </ion-row>
-
-  <ion-row *ngFor="let code of code">
+  <!-- Historial de productos escaneados -->
+  <ion-row *ngIf="scannedProducts.length > 0">
     <ion-col>
       <ion-card>
         <ion-card-header>
-          <ion-card-title>Código: {{ code.codigo }}</ion-card-title>
+          <ion-card-title>Historial de Productos Escaneados</ion-card-title>
         </ion-card-header>
         <ion-card-content>
-          Producto: {{ code.producto }} <br />
-          Gluten: {{ code.containGluten ? "Contiene Gluten" : "Sin Gluten" }}
+          <ion-list>
+            <ion-item *ngFor="let product of scannedProducts; let i = index">
+              <p>
+                <strong>{{ product.nombre }}</strong> - {{ product.codigo }}
+                <br />
+                Ingredientes: {{ product.ingredientes }} <br />
+                Gluten:
+                <span
+                  [ngClass]="{
+                    'text-danger': product.tieneGluten,
+                    'text-success': !product.tieneGluten
+                  }"
+                >
+                  {{ product.tieneGluten ? "Contiene Gluten" : "Sin Gluten" }}
+                </span>
+              </p>
+              <ion-item-divider
+                *ngIf="i < scannedProducts.length - 1"
+              ></ion-item-divider>
+            </ion-item>
+          </ion-list>
         </ion-card-content>
       </ion-card>
     </ion-col>

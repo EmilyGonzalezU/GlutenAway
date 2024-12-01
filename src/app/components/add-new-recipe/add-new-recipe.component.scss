@@ -1,70 +1,69 @@
-
-ion-content {
-  position: relative;
-  --background: var(--ion-color-light);
-}
-
-#recipeContainer{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin-top: 100px;
-}
-#backPage {
-  position: absolute;
-    top: 20px; 
-    left: 10px;
+.custom-modal-content {
+  --background: #fff;
+  padding: 20px;
+  border-radius: 20px; /* Bordes redondeados en el modal */
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1); /* Sombra suave en el modal */
+  margin: 20px; /* Margen alrededor del modal */
+  
+  .image-container {
     display: flex;
     align-items: center;
-    cursor: pointer; 
-    z-index: 10;
-}
+    justify-content: center;
+    margin-bottom: 30px; /* Más espacio debajo de la imagen */
+    width: 100%;
+    height: 200px; /* Ajustamos la altura de la imagen */
+    background-color: #f0f0f0;
+    border-radius: 15px;
+    overflow: hidden; /* Asegura que la imagen no se salga del contorno */
+    position: relative;
+    cursor: pointer;
 
+    ion-icon {
+      font-size: 50px;
+      color: #f0a500;
+    }
 
+    span {
+      color: #555;
+      font-size: 16px;
+      margin-top: 10px;
+    }
 
-.icon-top {
-  background-color: #f8f3e6;
-  border-radius: 50%; 
-  padding: 20px;
-  margin-bottom: 20px;
-  color: #ffc300; 
-  font-size: 40px;
-}
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover; 
+    }
+  }
 
-#header {
-  font-size: 22px;
-  font-weight: bold;
-  margin-bottom: 16px;
-}
+  ion-item.form-item {
+    --inner-padding: 20px; 
+    margin-bottom: 20px;
+    --border-radius: 15px; 
+    --background: #fff;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); 
+  }
 
-ion-input, ion-textarea {
-  --background: var(--ion-color-light);
-  --color: var(--ion-text-color);
-  --placeholder-color: var(--ion-text-color);
-  border-radius: 8px;
-  margin-bottom: 16px;
-  padding: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
+  ion-label {
+    font-weight: bold;
+  }
 
+  ion-input {
+    --padding-start: 10px;
+    --padding-end: 10px;
+    --border-radius: 15px; 
+  }
 
-.titulo, .tiempo,.ingredientes, .preparacion{
-  --highlight-color: #ffc300;
-}
+  ion-button {
+    margin-top: 15px;
+    --border-radius: 50px;
+    --background: #FFC300 !important;
+    height: 30px; 
+    font-size: 14px;
+    text-transform: none;
+  }
 
-#saveButton {
-  --background: #ffc300;
-  font-weight: bold;
-  height: 48px;
-  margin-top: 20px;
-  border-radius: 24px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  transition: transform 0.2s ease;
-  color: var(--ion-text-color);
-  text-transform: none;
-}
-
-#saveButton:hover {
-  transform: translateY(-2px);
+  ion-content {
+    background-color: #f9f9f9;
+  }
 }

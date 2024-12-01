@@ -1,7 +1,15 @@
 <ion-content [fullscreen]="true" bounce="true">
   <ion-card style="margin-bottom: 30vw"></ion-card>
-  <ion-card *ngFor="let receta of recipes" (click)="setOpen(true, receta)">
-    <ion-img [src]="receta.imagen" alt="{{ receta.nombre }}"></ion-img>
+  <ion-card
+    *ngFor="let receta of recipes"
+    (click)="setOpen(true, receta)"
+    class="recipe-card"
+  >
+    <ion-img
+      [src]="receta.imagen"
+      alt="{{ receta.nombre }}"
+      class="recipe-img"
+    ></ion-img>
     <ion-row>
       <ion-col size="11">
         <ion-card-header>

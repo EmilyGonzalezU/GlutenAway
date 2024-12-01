@@ -45,19 +45,24 @@ export class AuthService {
     }
 
 
-  async loginUser(email: string, password: string): Promise<any> {
-    this.isLoading = true;
-    try {
-      const userCredential = await signInWithEmailAndPassword(this.auth, email, password);
-      const user = userCredential.user;
-      this.router.navigate(['/starter-tab/recipes']);
-      return user; 
-    } catch (error) {
-      throw error; 
-    } finally{
-      this.isLoading = false;
+    async loginUser(email: string, password: string): Promise<any> {
+      this.isLoading = true;
+      try {
+        const userCredential = await signInWithEmailAndPassword(this.auth, email, password);
+        const user = userCredential.user;
+        
+        // Actualizar el estado del usuario actual
+        this.currentUser = user.email;
+        localStorage.setItem('currentUser', this.currentUser);
+    
+        this.router.navigate(['/starter-tab/recipes']);
+        return user; 
+      } catch (error) {
+        throw error; 
+      } finally {
+        this.isLoading = false;
+      }
     }
-  }
   /**Obtiene la informacion del usuario mediante el email */
   async getUserInfo(email: string) {
     const userRef = doc(this.db, `users/${email}`);
@@ -92,6 +97,7 @@ export class AuthService {
       } finally {
         localStorage.removeItem('googleUser');
         localStorage.removeItem('currentUser');
+        this.currentUser = null; 
         this.isInitialized = false;
         this.router.navigate(['/loginoptions']);
       }
@@ -102,29 +108,30 @@ export class AuthService {
   private isInitialized: boolean = false;
   authen: boolean = false;
   initializeauth() {
+    const savedUser = localStorage.getItem('currentUser'); //carga usuario guardado
+    if (savedUser) {
+      this.currentUser = savedUser; //restaurar estado
+      console.log('Usuario restaurado desde localStorage:', this.currentUser);
+    }
+  
     this.auth.onAuthStateChanged((user) => {
       if (this.isInitialized) return;
       this.isInitialized = true;
-
+  
       if (user) {
         this.currentUser = user.email;
         localStorage.setItem('currentUser', this.currentUser);
-        console.log('logueado con firebase');
+        console.log('Logueado con Firebase:', this.currentUser);
         this.router.navigate(['/starter-tab/recipes']);
       } else {
-        const googleUser = localStorage.getItem('googleUser');
-        if (googleUser) {
-          console.log('logueado con google');
-          this.router.navigate(['/starter-tab/recipes']);
-        } else {
-          console.log('usuario no logueado');
-          this.router.navigate(['/loginoptions']);
-        }
+        console.log('Usuario no logueado');
+        this.router.navigate(['/loginoptions']);
       }
     });
   }
+  
 
-  async addRecipe(email: string, tiempo: number, titulo: string, ingredientes: string, preparacion: string ){
+  async addRecipe(email: string, tiempo: number, titulo: string, ingredientes: string, preparacion: string, imagen: string ){
     try {
       const user = await this.getUserInfo(email);
 
@@ -138,7 +145,8 @@ export class AuthService {
         tiempo,
         titulo,
         ingredientes,
-        preparacion
+        preparacion,
+        imagen
       });
 
       console.log('reseta add');
@@ -160,7 +168,7 @@ export class AuthService {
       const recipesRef = collection(this.db, `users/${email}/recipes`);
       const recipesSnapshot = await getDocs(recipesRef);
   
-      // Mapea los documentos de recetas en un array
+      //mapea los documentos de recetas en un array
       const recipes = recipesSnapshot.docs.map(doc => ({
         id: doc.id,
         ...doc.data()

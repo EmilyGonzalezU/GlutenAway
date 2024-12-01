@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
+import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
+
 @Component({
   selector: 'app-add-recipe',
   templateUrl: './add-new-recipe.component.html',
@@ -14,16 +16,29 @@ export class AddNewRecipeComponent {
     tiempo: 0,
     ingredientes: '',
     preparacion: '',
+    imagen: '',
   };
 
   imagePreview: string | ArrayBuffer | null = null;
 
   constructor(private auth: AuthService, private modalCtrl: ModalController, private router: Router) {}
 
+  async onImageSelected() {
+    const image = await Camera.getPhoto({
+      quality: 90,
+      allowEditing: false,
+      resultType: CameraResultType.DataUrl, // Devuelve la imagen como Data URL
+      source: CameraSource.Photos // Accede a la galeria
+    });
+
+    this.imagePreview = image.dataUrl as string;
+    this.recipe.imagen = image.dataUrl as string;
+  }
+
   submitRecipe() {
     const email = this.auth.getCurrentUserEmail();
     if (email && this.recipe.titulo && this.recipe.tiempo) {
-      this.auth.addRecipe(email, this.recipe.tiempo, this.recipe.titulo, this.recipe.ingredientes, this.recipe.preparacion)
+      this.auth.addRecipe(email, this.recipe.tiempo, this.recipe.titulo, this.recipe.ingredientes, this.recipe.preparacion, this.recipe.imagen)
         .then(() => {
           this.modalCtrl.dismiss(this.recipe);
         })
@@ -36,26 +51,7 @@ export class AddNewRecipeComponent {
   closeModal() {
     this.modalCtrl.dismiss();
   }
-
-  /**
-   * 
-   * @returns onImageSelected(event: Event) {
-    const fileInput = (event.target as HTMLInputElement);
-    if (fileInput.files && fileInput.files.length > 0) {
-      const file = fileInput.files[0];
-      const reader = new FileReader();
-
-      reader.onload = () => {
-        this.imagePreview = reader.result;
-        this.recipe.imagen = reader.result as string;
-      };
-
-      reader.readAsDataURL(file);
-    }
-  }
-   */
-
-
+  
   navRecipes(){
     return this.router.navigate(['/starter-tab/recipes']);
   }
