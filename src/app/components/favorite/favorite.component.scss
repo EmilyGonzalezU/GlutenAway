@@ -75,3 +75,136 @@ h2{
 }
 
 
+.empty-favorites {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+  text-align: center;
+  font-size: 18px;
+  color: #6c757d;
+}
+
+
+.recipe-card {
+  margin: 10px 16px;
+  border-radius: 10px; 
+  overflow: hidden; 
+}
+
+/*img tamaño fijo*/
+.recipe-img {
+  width: 100%; 
+  height: 200px; 
+  object-fit: cover; 
+  border-radius: 10px 10px 0 0; 
+}
+
+/* Estilo general de filas */
+ion-row {
+  --ion-padding-start: 0;
+  --ion-padding-end: 0;
+}
+
+.loading-overlay {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 150px;
+  height: 150px;
+  border-radius: 20px; 
+  background: white;
+  color: white;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+}
+
+.loading-overlay ion-spinner {
+  margin-bottom: 10px;
+  color: #ffc300;
+}
+
+.loading-overlay p {
+  font-size: 16px;
+  color: black; 
+  margin: 0;
+}
+
+ion-card-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-align: left;
+}
+
+ion-card-subtitle {
+  font-size: 0.9rem;
+  color: gray;
+}
+
+.custom-modal-content {
+  --background: #fff;
+  border-radius: 20px; 
+  padding: 20px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1); 
+}
+
+.modal-card {
+  border-radius: 20px;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1); 
+}
+
+.image-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  width: 100%;
+  height: 200px; 
+  background-color: #f0f0f0;
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; 
+  border-radius: 15px;
+}
+
+.modal-info {
+  text-align: left;
+}
+
+.modal-title {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+ion-modal {
+  --border-radius: 15px 15px 0 0;
+}
+.modal-time {
+  text-align: center;
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+h3 {
+  font-size: 1.2rem;
+  margin-top: 15px;
+  color: #333;
+}
+
+p {
+  font-size: 1rem;
+  color: #666;
+}

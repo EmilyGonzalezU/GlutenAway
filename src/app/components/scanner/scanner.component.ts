@@ -60,7 +60,7 @@ export class ScannerComponent implements OnInit {
     if (product) {
       return {
         nombre: product.producto,
-        ingredientes: product.ingredientes.join(', '),
+        ingredientes: product.ingredientes,
         tieneGluten: product.containGluten
       };
     } else {

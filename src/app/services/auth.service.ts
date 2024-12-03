@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Auth, signInWithPopup, GoogleAuthProvider, signInWithEmailAndPassword, createUserWithEmailAndPassword, sendPasswordResetEmail } from '@angular/fire/auth';
-import { getFirestore, doc, setDoc, collection, Firestore, getDoc, addDoc , getDocs} from "firebase/firestore";
+import { getFirestore, doc, setDoc, collection, Firestore, getDoc, addDoc , getDocs, deleteDoc} from "firebase/firestore";
 import { Router } from '@angular/router';
 import { GoogleAuth } from '@codetrix-studio/capacitor-google-auth';
+import { from, Observable, of } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+  firebaseDatabase: any;
 
   constructor(
     private auth: Auth, 
@@ -131,7 +133,7 @@ export class AuthService {
   }
   
 
-  async addRecipe(email: string, tiempo: number, titulo: string, ingredientes: string, preparacion: string, imagen: string ){
+  async addRecipe(email: string, tiempo: number, titulo: string, ingredientes: string, preparacion: string, imagen: string, visibilidad: string){
     try {
       const user = await this.getUserInfo(email);
 
@@ -146,7 +148,9 @@ export class AuthService {
         titulo,
         ingredientes,
         preparacion,
-        imagen
+        imagen,
+        visibilidad,
+        fav: false,
       });
 
       console.log('reseta add');
@@ -188,4 +192,40 @@ export class AuthService {
   resetPass(email:string): Promise<void>{
     return sendPasswordResetEmail(this.auth, email);
   }
+
+  //**Metodo para obtener las global recipes (recetas publicas agregadas por los usuarios) */
+ async getGlobalRecipes(): Promise<any[]> {
+    const globalRecipesCol = collection(this.db, 'globalRecipes');
+    const snapshot = await getDocs(globalRecipesCol);
+    return snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+  }
+
+  updateGlobalRecipe(recipe: any): Observable<any> {
+    if (!recipe.id) {
+      console.error('No se puede actualizar la receta, falta el ID.');
+      return of(null); // Evita errores si no hay ID
+    }
+  
+    const recipeDoc = doc(this.db, `globalRecipes/${recipe.id}`);
+    return from(setDoc(recipeDoc, { fav: recipe.fav }, { merge: true }));
+  }
+
+  /**CRUD RECETAS */
+  async deleteRecipe(email: string, recipeId: string): Promise<void> {
+    try {
+      const recipeDocRef = doc(this.db, `users/${email}/recipes/${recipeId}`);
+      await deleteDoc(recipeDocRef); // Eliminaael documento
+      console.log('Receta eliminada con éxito');
+    } catch (error) {
+      console.error('Error al eliminar la receta:', error);
+      throw error;
+    }
+  }
+
+  async updateRecipe(email: string, recipe: any) {
+    const recipeDoc = doc(this.db, `users/${email}/recipes/${recipe.id}`);
+    await setDoc(recipeDoc, recipe, { merge: true });
+  }
+  
+  
 }

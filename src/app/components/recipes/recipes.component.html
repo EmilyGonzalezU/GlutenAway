@@ -7,14 +7,14 @@
   >
     <ion-img
       [src]="receta.imagen"
-      alt="{{ receta.nombre }}"
+      alt="{{ receta.titulo }}"
       class="recipe-img"
     ></ion-img>
     <ion-row>
       <ion-col size="11">
         <ion-card-header>
-          <ion-card-title>{{ receta.nombre }}</ion-card-title>
-          <ion-card-subtitle>{{ receta.duracion }}</ion-card-subtitle>
+          <ion-card-title>{{ receta.titulo }}</ion-card-title>
+          <ion-card-subtitle>{{ receta.tiempo }}</ion-card-subtitle>
         </ion-card-header>
       </ion-col>
       <ion-col size="1">
@@ -39,44 +39,27 @@
   <ion-modal
     #modal
     [isOpen]="isModalOpen"
-    [initialBreakpoint]="0.85"
+    [initialBreakpoint]="0.7"
     [breakpoints]="[0.5, 0.85, 1]"
     (ionModalDidDismiss)="modalRestart()"
   >
     <ng-template>
-      <ion-header>
-        <ion-toolbar>
-          <ion-title></ion-title>
-          <ion-buttons slot="end">
-            <ion-button (click)="setOpen(false)"
-              ><ion-icon name="close-outline"></ion-icon
-            ></ion-button>
-          </ion-buttons>
-        </ion-toolbar>
-      </ion-header>
-      <ion-content class="ion-padding">
-        <ion-row>
-          <ion-col size="1"></ion-col>
-          <img
-            class="imgModal"
-            [alt]="openRecipe?.imagen"
-            [src]="openRecipe?.imagen"
-          />
-          <ion-col size="10">
-            <p>
-              <strong
-                ><h2>{{ openRecipe?.nombre }}</h2></strong
-              >
+      <ion-content class="custom-modal-content">
+        <ion-card class="modal-card">
+          <div class="image-container">
+            <img [src]="openRecipe?.imagen" alt="Vista previa" />
+          </div>
+          <div class="modal-info">
+            <h2 class="modal-title">{{ openRecipe?.titulo }}</h2>
+            <p class="modal-time">
+              ⏱ Tiempo de preparación: {{ openRecipe?.tiempo }}
             </p>
-            <p>
-              <strong>Tiempo de preparación: </strong>
-              {{ openRecipe?.duracion }}
-            </p>
-            <p><strong>Ingredientes: </strong>{{ openRecipe?.ingredientes }}</p>
-            <p><strong>Preparación: </strong>{{ openRecipe?.preparacion }}</p>
-          </ion-col>
-          <ion-col size="1"></ion-col>
-        </ion-row>
+            <h3>Ingredientes:</h3>
+            <p>{{ openRecipe?.ingredientes }}</p>
+            <h3>Preparación:</h3>
+            <p>{{ openRecipe?.preparacion }}</p>
+          </div>
+        </ion-card>
       </ion-content>
     </ng-template>
   </ion-modal>

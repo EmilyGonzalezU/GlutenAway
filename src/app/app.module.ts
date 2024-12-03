@@ -2,7 +2,7 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 
-import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
+import { AlertController, IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { BarcodeScanner } from '@awesome-cordova-plugins/barcode-scanner/ngx';
 
 import { AppComponent } from './app.component';
@@ -26,7 +26,7 @@ import { EmailComposer } from '@awesome-cordova-plugins/email-composer/ngx';
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     BarcodeScanner,provideFirebaseApp(() => initializeApp(environment.firebaseConfig )),
-    provideFirestore(() => getFirestore()),provideAuth(() => getAuth()), EmailComposer
+    provideFirestore(() => getFirestore()),provideAuth(() => getAuth()), EmailComposer, AlertController
   ],
   bootstrap: [AppComponent],
 })

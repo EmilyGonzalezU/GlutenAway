@@ -32,7 +32,13 @@
           [(ngModel)]="recipe.ingredientes"
           name="ingredientes"
           required
+          maxlength="300"
+          (ionInput)="validateInput('ingredientes')"
         ></ion-input>
+        <p class="char-counter">{{ ingredientesCharCount }}/300 caracteres</p>
+        <p *ngIf="ingredientesError" class="error-message">
+          El máximo es de 300 caracteres.
+        </p>
       </ion-item>
 
       <ion-item class="form-item">
@@ -41,8 +47,34 @@
           [(ngModel)]="recipe.preparacion"
           name="preparacion"
           required
+          maxlength="500"
+          (ionInput)="validateInput('preparacion')"
         ></ion-input>
+        <p class="char-counter">{{ preparacionCharCount }}/500 caracteres</p>
+        <p *ngIf="preparacionError" class="error-message">
+          El máximo es de 500 caracteres.
+        </p>
       </ion-item>
+
+      <!-- Botones de visibilidad con estilo personalizado -->
+      <ion-segment
+        [(ngModel)]="recipe.visibilidad"
+        name="visibilidad"
+        class="custom-segment"
+      >
+        <ion-segment-button value="publico" class="public-button">
+          <ion-label>Público</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="privado" class="private-button">
+          <ion-label>Privado</ion-label>
+        </ion-segment-button>
+      </ion-segment>
+
+      <!-- Mensaje de advertencia -->
+      <p *ngIf="recipe.visibilidad === 'publico'" class="warning-message">
+        Al crear una receta pública, su eliminación se procesará en un plazo de
+        48 horas.
+      </p>
 
       <ion-button expand="block" shape="round" type="submit" color="warning">
         Crear Receta
