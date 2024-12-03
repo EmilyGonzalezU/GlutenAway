@@ -4,7 +4,7 @@
   <!-- Mostrar spinner mientras se cargan las recetas -->
   <div *ngIf="loading" class="loading-overlay">
     <ion-spinner name="crescent"></ion-spinner>
-    <p>Cargando Favoritos...</p>
+    <p style="font-size: 10px">Cargando Favoritos...</p>
   </div>
 
   <div *ngIf="favoriteRecipes.length === 0 && !loading" class="empty-favorites">

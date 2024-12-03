@@ -222,10 +222,5 @@ export class AuthService {
     }
   }
 
-  async updateRecipe(email: string, recipe: any) {
-    const recipeDoc = doc(this.db, `users/${email}/recipes/${recipe.id}`);
-    await setDoc(recipeDoc, recipe, { merge: true });
-  }
-  
   
 }

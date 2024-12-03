@@ -117,28 +117,5 @@ export class MyrecipesComponent implements OnInit {
   }
 
   /**Modificacion de receta */
-  async saveRecipe() {
-    try {
-      const email = this.authService.getCurrentUserEmail();
-      await this.authService.updateRecipe(email, this.selectedRecipe);
-      console.log('Receta actualizada con éxito');
-      this.setEditOpen(false);
-      this.loadRecipes(); // Recargar las recetas para ver los cambios
-    } catch (error) {
-      console.error('Error al actualizar la receta.');
-    }
-  }
   
-  isEditModalOpen=false;
-
-  async editRecipe(recipe: any) {
-    this.closePopover(); 
-    this.selectedRecipe = recipe; 
-    console.log('Receta seleccionada para edición:', this.selectedRecipe); 
-    this.cdr.detectChanges(); 
-    this.setEditOpen(true); 
-  }
-  setEditOpen(isOpen: boolean) {
-    this.isEditModalOpen = isOpen;
-  }
 }
